@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://dx73koqdn0xos"]
+
+[ext_resource type="Texture2D" uid="uid://defe7s4y7tsxl" path="res://items/item297.png" id="1_xwqr4"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_7pbxj"]
+[ext_resource type="Resource" uid="uid://bsadr181am28j" path="res://Resources/charcoal.tres" id="3_578ld"]
+[ext_resource type="Resource" uid="uid://bjs2awql8dvbo" path="res://Resources/gold_ore.tres" id="4_giefe"]
+
+[resource]
+script = ExtResource("2_7pbxj")
+icon = ExtResource("1_xwqr4")
+name = "Lingote de Oro"
+recipe = Array[ExtResource("2_7pbxj")]([ExtResource("3_578ld"), ExtResource("3_578ld"), ExtResource("4_giefe")])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Material nivel 3. Forjado para armas, armaduras y herramientas"
+rarity = "Rare"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

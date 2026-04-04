@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dgoiwkas5xm57"]
+
+[ext_resource type="Texture2D" uid="uid://d4f8hrwsr76kr" path="res://items/item318.png" id="1_jfoll"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_b0ogg"]
+
+[resource]
+script = ExtResource("2_b0ogg")
+icon = ExtResource("1_jfoll")
+name = "Mineral de Hierro"
+recipe = Array[ExtResource("2_b0ogg")]([])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Mineral nivel 2. Común
+"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

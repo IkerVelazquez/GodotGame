@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://cl3whs1yw4eud"]
+
+[ext_resource type="Texture2D" uid="uid://bkmkfhoccd2s1" path="res://Free Smoke Fx Pixel 2/Free Smoke Fx  Pixel 05.png" id="1_u4jxa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjfet"]
+atlas = ExtResource("1_u4jxa")
+region = Rect2(0, 636, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ip5yv"]
+atlas = ExtResource("1_u4jxa")
+region = Rect2(64, 636, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oupd"]
+atlas = ExtResource("1_u4jxa")
+region = Rect2(128, 636, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2dco"]
+atlas = ExtResource("1_u4jxa")
+region = Rect2(192, 636, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v54t"]
+atlas = ExtResource("1_u4jxa")
+region = Rect2(256, 636, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sywmo"]
+atlas = ExtResource("1_u4jxa")
+region = Rect2(320, 636, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r1bv"]
+atlas = ExtResource("1_u4jxa")
+region = Rect2(384, 636, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01m77"]
+atlas = ExtResource("1_u4jxa")
+region = Rect2(448, 636, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0sn6"]
+atlas = ExtResource("1_u4jxa")
+region = Rect2(512, 636, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4jxa"]
+atlas = ExtResource("1_u4jxa")
+region = Rect2(576, 636, 64, 53)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_klrsx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjfet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ip5yv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oupd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2dco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v54t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sywmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r1bv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01m77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0sn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4jxa")
+}],
+"loop": false,
+"name": &"Land_smoke",
+"speed": 12.0
+}]
+
+[node name="LandEffect" type="AnimatedSprite2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_klrsx")
+animation = &"Land_smoke"

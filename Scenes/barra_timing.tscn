@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpf7jouwht5cf"]
+
+[ext_resource type="Script" uid="uid://c1dqs1nv6njx7" path="res://Scripts/barra_timing.gd" id="1_1tfr5"]
+
+[node name="BarraTiming" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+script = ExtResource("1_1tfr5")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 400.0
+offset_bottom = 34.0
+
+[node name="TargetZone" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 24.0
+offset_right = 240.0
+offset_bottom = 34.0
+color = Color(0, 1, 0.329412, 1)
+
+[node name="Cursor" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 20.0
+offset_bottom = 55.0
+color = Color(0.847298, 0.105708, 2.88785e-07, 1)

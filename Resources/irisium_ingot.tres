@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://nqp5jp1bxlcs"]
+
+[ext_resource type="Texture2D" uid="uid://s0oempgf50u8" path="res://items/item298.png" id="1_ciyc8"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_xwd6b"]
+[ext_resource type="Resource" uid="uid://bsadr181am28j" path="res://Resources/charcoal.tres" id="3_8sqpb"]
+[ext_resource type="Resource" uid="uid://cxtob2bdly1xt" path="res://Resources/irisium_ore.tres" id="4_ofg46"]
+
+[resource]
+script = ExtResource("2_xwd6b")
+icon = ExtResource("1_ciyc8")
+name = "Lingotel de Irisium"
+recipe = Array[ExtResource("2_xwd6b")]([ExtResource("3_8sqpb"), ExtResource("3_8sqpb"), ExtResource("3_8sqpb"), ExtResource("3_8sqpb"), ExtResource("3_8sqpb"), ExtResource("4_ofg46")])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Material nivel 6. Forjado para armas y armaduras con características únicas"
+rarity = "Epic"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

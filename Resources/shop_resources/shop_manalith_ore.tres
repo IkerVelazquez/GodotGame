@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopItemResource" load_steps=3 format=3 uid="uid://ctqqb0ewhhjf4"]
+
+[ext_resource type="Resource" uid="uid://b67064x8kko0u" path="res://Resources/manalith_ore.tres" id="1_wnvdh"]
+[ext_resource type="Script" uid="uid://cqc5pa3fukn23" path="res://Scripts/ShopItemResources.gd" id="2_243bs"]
+
+[resource]
+script = ExtResource("2_243bs")
+item = ExtResource("1_wnvdh")
+price = 200
+metadata/_custom_type_script = "uid://cqc5pa3fukn23"

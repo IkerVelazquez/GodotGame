@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dpbirq0wyibv8"]
+
+[ext_resource type="Texture2D" uid="uid://cdxgcwv17j3jj" path="res://items/item422.png" id="1_5bemw"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_2fwdh"]
+[ext_resource type="Resource" uid="uid://c3hakal7ns710" path="res://Resources/silver_coin.tres" id="3_d78vk"]
+
+[resource]
+script = ExtResource("2_2fwdh")
+icon = ExtResource("1_5bemw")
+name = "Moneda de Oro"
+recipe = Array[ExtResource("2_2fwdh")]([ExtResource("3_d78vk"), ExtResource("3_d78vk"), ExtResource("3_d78vk"), ExtResource("3_d78vk"), ExtResource("3_d78vk"), ExtResource("3_d78vk"), ExtResource("3_d78vk"), ExtResource("3_d78vk"), ExtResource("3_d78vk"), ExtResource("3_d78vk")])
+type = "Currency"
+tool_type = ""
+tool_level = 0
+value = 1
+description = "Moneda de oro, vale 10 monedas de plata"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

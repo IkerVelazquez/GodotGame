@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bend82vj2ttad"]
+
+[sub_resource type="Animation" id="Animation_elowq"]
+resource_name = "bounce"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -27)]
+}
+
+[sub_resource type="Animation" id="Animation_ylgm4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nrrhd"]
+_data = {
+&"RESET": SubResource("Animation_ylgm4"),
+&"bounce": SubResource("Animation_elowq")
+}
+
+[node name="enemy_image" type="Sprite2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nrrhd")
+}
+autoplay = "bounce"

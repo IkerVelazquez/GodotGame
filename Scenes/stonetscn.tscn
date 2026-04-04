@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://iafudmbcx6jy"]
+
+[ext_resource type="Script" uid="uid://cfrcmyq0eetxx" path="res://Scripts/wood.gd" id="1_73q7q"]
+[ext_resource type="Texture2D" uid="uid://0nc5asefnn8m" path="res://items/item377.png" id="2_73q7q"]
+[ext_resource type="Resource" uid="uid://bqltaipnpqcu2" path="res://Resources/stone.tres" id="3_4ajga"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_73q7q"]
+radius = 12.5
+
+[node name="Stone" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_73q7q")
+script = ExtResource("1_73q7q")
+item = ExtResource("3_4ajga")
+
+[node name="Area2D" type="Area2D" parent="."]
+z_index = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.4, 0.4)
+shape = SubResource("CircleShape2D_73q7q")
+
+[connection signal="body_entered" from="Area2D" to="Sprite2D" method="_on_area_2d_body_entered"]

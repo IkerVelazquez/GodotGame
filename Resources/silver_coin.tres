@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://c3hakal7ns710"]
+
+[ext_resource type="Texture2D" uid="uid://8q00t0r7pe2r" path="res://items/item421.png" id="1_gi8it"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_s0rmd"]
+[ext_resource type="Resource" uid="uid://dkxm85xyooxyf" path="res://Resources/copper_coin.tres" id="3_n7bh6"]
+
+[resource]
+script = ExtResource("2_s0rmd")
+icon = ExtResource("1_gi8it")
+name = "Moneda de Plata"
+recipe = Array[ExtResource("2_s0rmd")]([ExtResource("3_n7bh6"), ExtResource("3_n7bh6"), ExtResource("3_n7bh6"), ExtResource("3_n7bh6"), ExtResource("3_n7bh6"), ExtResource("3_n7bh6"), ExtResource("3_n7bh6"), ExtResource("3_n7bh6"), ExtResource("3_n7bh6"), ExtResource("3_n7bh6")])
+type = "Currency"
+tool_type = ""
+tool_level = 0
+value = 1
+description = "Moneda de plata, vale diez monedas de cobre"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

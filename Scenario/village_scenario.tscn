@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1yd64xts8uh5"]
+
+[ext_resource type="Script" uid="uid://clvd57w0v2gih" path="res://Scripts/1vs1_scenario.gd" id="1_lavv6"]
+[ext_resource type="Texture2D" uid="uid://bbwfm7f4p6yl" path="res://Backgrounds/forest_background.png" id="2_mvae8"]
+
+[node name="Village_scenario" type="Node2D"]
+position = Vector2(1920, 1080)
+script = ExtResource("1_lavv6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -4
+position = Vector2(-1344, -756)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_mvae8")
+
+[node name="PlayerSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-1176, -725)
+
+[node name="EnemySpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-1725, -725)
+
+[node name="Characters" type="Node2D" parent="."]

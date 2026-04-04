@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://disjh3elqa0a0"]
+
+[ext_resource type="Texture2D" uid="uid://cv084r6vobkx2" path="res://items/item294.png" id="1_oeoc2"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_2p4fu"]
+
+[resource]
+script = ExtResource("2_2p4fu")
+icon = ExtResource("1_oeoc2")
+name = "Cobre"
+recipe = Array[ExtResource("2_2p4fu")]([])
+type = "Material"
+tool_type = ""
+tool_level = 1
+description = "Mineral nivel 1. Común
+"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

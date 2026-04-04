@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bjs2awql8dvbo"]
+
+[ext_resource type="Texture2D" uid="uid://6jldd2xqhkfu" path="res://items/item321.png" id="1_qgb1t"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_exyew"]
+
+[resource]
+script = ExtResource("2_exyew")
+icon = ExtResource("1_qgb1t")
+name = "Mineral de Oro"
+recipe = Array[ExtResource("2_exyew")]([])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Mineral nivel 3. Raro
+"
+rarity = "Rare"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

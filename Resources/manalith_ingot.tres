@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://gwvjgf0gx2wm"]
+
+[ext_resource type="Texture2D" uid="uid://dxupryyyflr6u" path="res://items/item299.png" id="1_jdrr4"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_1206a"]
+[ext_resource type="Resource" uid="uid://dsl01krofvtox" path="res://Resources/avernita_ingot.tres" id="3_f4qb0"]
+[ext_resource type="Resource" uid="uid://b67064x8kko0u" path="res://Resources/manalith_ore.tres" id="4_7y54o"]
+
+[resource]
+script = ExtResource("2_1206a")
+icon = ExtResource("1_jdrr4")
+name = "Lingote de Manalith"
+recipe = Array[ExtResource("2_1206a")]([ExtResource("3_f4qb0"), ExtResource("4_7y54o")])
+type = "Material"
+tool_type = ""
+tool_level = 1
+value = 0
+description = "Material nivel 8. Forjado para armas y armaduras resistentes y mágicas"
+rarity = "Legendary"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

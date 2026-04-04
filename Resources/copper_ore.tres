@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bem3j8udrubtt"]
+
+[ext_resource type="Texture2D" uid="uid://nk2da4mpcujn" path="res://items/item326.png" id="1_gxy2b"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_lu11a"]
+
+[resource]
+script = ExtResource("2_lu11a")
+icon = ExtResource("1_gxy2b")
+name = "Mineral de Cobre"
+recipe = Array[ExtResource("2_lu11a")]([])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Mineral nivel 1. Común"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

@@ -1,0 +1,12 @@
+~ house_out
+
+James: Iré a recolectar algo de madera fuera de la aldea,[wait=0.8] enseguida vuelvo.
+do MisionSystem.add_mission("Habla con Leonard")
+do Levels.trigger_house_out()#Envía seña para quitar la pantalla negra del inicio
+do Levels.in_cutscene = false
+James: Menos mal he cargado con mi hacha de madera, espero recolectar mucha leña para el invierno
+
+
+=> END
+
+

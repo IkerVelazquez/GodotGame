@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://bsocbyl37i87e"]
+
+[ext_resource type="Texture2D" uid="uid://ddwbsw710xwra" path="res://items/item361.png" id="1_yj4b4"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_7yt8k"]
+[ext_resource type="Resource" uid="uid://d0v5bepg7xjh2" path="res://Resources/wood.tres" id="3_m0tn7"]
+
+[resource]
+script = ExtResource("2_7yt8k")
+icon = ExtResource("1_yj4b4")
+name = "Tablones de madera"
+recipe = Array[ExtResource("2_7yt8k")]([ExtResource("3_m0tn7"), ExtResource("3_m0tn7")])
+type = "Material"
+tool_type = ""
+tool_level = 1
+description = "Material para construir. Común"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

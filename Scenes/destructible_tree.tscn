@@ -1,0 +1,255 @@
+[gd_scene load_steps=32 format=3 uid="uid://blwqpi57615ik"]
+
+[ext_resource type="Script" uid="uid://dgjcmkr6uo1h1" path="res://Scripts/destructible_tree.gd" id="1_gwc0u"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_at53t"]
+[ext_resource type="Resource" uid="uid://d0v5bepg7xjh2" path="res://Resources/wood.tres" id="2_c3bkr"]
+[ext_resource type="Texture2D" uid="uid://bg5nc4cqmqkir" path="res://ForestRPG/tree.png" id="2_h4ski"]
+[ext_resource type="Resource" uid="uid://c52oa3i821adc" path="res://Resources/leaf.tres" id="3_wdou0"]
+[ext_resource type="Texture2D" uid="uid://dtr1xgku46xgu" path="res://ForestRPG/leaf.png" id="4_c3bkr"]
+[ext_resource type="Texture2D" uid="uid://banp841acubjk" path="res://Free Smoke Fx Pixel 2/Free Smoke Fx  Pixel 06.png" id="5_4xbad"]
+[ext_resource type="Texture2D" uid="uid://5nmircugm5b0" path="res://ForestRPG/log.png" id="6_ccc8t"]
+[ext_resource type="FontFile" uid="uid://dmq1cx7w47jx3" path="res://pixel_art_font.ttf" id="7_qqax6"]
+[ext_resource type="AudioStream" uid="uid://d0ydjihadx8i2" path="res://Sounds/tree_choped.mp3" id="10_mqcry"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3bkr"]
+size = Vector2(32, 24)
+
+[sub_resource type="Animation" id="Animation_ccc8t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4xbad"]
+resource_name = "leaf_fallin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(20, 19)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qqax6"]
+_data = {
+&"RESET": SubResource("Animation_ccc8t"),
+&"leaf_fallin": SubResource("Animation_4xbad")
+}
+
+[sub_resource type="Animation" id="Animation_wdou0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qqax6"]
+resource_name = "leaf_fallin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-20, 20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_at53t"]
+_data = {
+&"RESET": SubResource("Animation_wdou0"),
+&"leaf_fallin": SubResource("Animation_qqax6")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqcry"]
+atlas = ExtResource("5_4xbad")
+region = Rect2(0, 949, 64, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l40mq"]
+atlas = ExtResource("5_4xbad")
+region = Rect2(64, 949, 64, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptanu"]
+atlas = ExtResource("5_4xbad")
+region = Rect2(128, 949, 64, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fadle"]
+atlas = ExtResource("5_4xbad")
+region = Rect2(192, 949, 64, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7rqm"]
+atlas = ExtResource("5_4xbad")
+region = Rect2(256, 949, 64, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtc5n"]
+atlas = ExtResource("5_4xbad")
+region = Rect2(320, 949, 64, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ugbo"]
+atlas = ExtResource("5_4xbad")
+region = Rect2(384, 949, 64, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi5lx"]
+atlas = ExtResource("5_4xbad")
+region = Rect2(448, 949, 64, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m86j1"]
+atlas = ExtResource("5_4xbad")
+region = Rect2(512, 949, 64, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmvd3"]
+atlas = ExtResource("5_4xbad")
+region = Rect2(576, 949, 64, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv8ke"]
+atlas = ExtResource("5_4xbad")
+region = Rect2(640, 949, 64, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsvjg"]
+atlas = ExtResource("5_4xbad")
+region = Rect2(704, 949, 64, 73)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hjgbd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqcry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l40mq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptanu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fadle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7rqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtc5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ugbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi5lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m86j1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmvd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv8ke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsvjg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 40.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccc8t"]
+size = Vector2(14, 11)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_gwc0u")
+drop_items = Array[ExtResource("2_at53t")]([ExtResource("3_wdou0"), ExtResource("2_c3bkr")])
+drop_amounts = Array[int]([2, 1])
+chop_time = 2.8
+
+[node name="tree_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_h4ski")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_c3bkr")
+
+[node name="Leaf2" type="Sprite2D" parent="."]
+texture = ExtResource("4_c3bkr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Leaf2"]
+libraries = {
+&"": SubResource("AnimationLibrary_qqax6")
+}
+speed_scale = 3.0
+
+[node name="Leaf" type="Sprite2D" parent="."]
+texture = ExtResource("4_c3bkr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Leaf"]
+libraries = {
+&"": SubResource("AnimationLibrary_at53t")
+}
+speed_scale = 2.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_hjgbd")
+frame = 11
+frame_progress = 1.0
+
+[node name="log_sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 17)
+texture = ExtResource("6_ccc8t")
+
+[node name="Hitbox" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 16.5)
+shape = SubResource("RectangleShape2D_ccc8t")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_top = -32.0
+offset_right = 4.0
+offset_bottom = 8.0
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = ExtResource("7_qqax6")
+theme_override_font_sizes/font_size = 40
+
+[node name="InteractionLabel" type="Label" parent="."]
+offset_left = 17.0
+offset_top = -11.0
+offset_right = 310.0
+offset_bottom = 77.0
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = ExtResource("7_qqax6")
+theme_override_font_sizes/font_size = 30
+
+[node name="choped" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_mqcry")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="animation_finished" from="Leaf/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

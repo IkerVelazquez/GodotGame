@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://dbrr3nixugf0w"]
+
+[ext_resource type="Texture2D" uid="uid://biha4qu0nrhkv" path="res://items/item296.png" id="1_6s7jx"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_x8613"]
+[ext_resource type="Resource" uid="uid://bsadr181am28j" path="res://Resources/charcoal.tres" id="3_r3mgi"]
+[ext_resource type="Resource" uid="uid://dgoiwkas5xm57" path="res://Resources/iron_ore.tres" id="4_h1uys"]
+
+[resource]
+script = ExtResource("2_x8613")
+icon = ExtResource("1_6s7jx")
+name = "Lingote de Hierro"
+recipe = Array[ExtResource("2_x8613")]([ExtResource("3_r3mgi"), ExtResource("4_h1uys")])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Material nivel 2. Forjado para armas, armaduras y herramientas"
+rarity = "Common"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

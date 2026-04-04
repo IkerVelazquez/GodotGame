@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://85m6esuuq0d8"]
+
+[ext_resource type="Texture2D" uid="uid://0hjn2dsd071r" path="res://items/item324.png" id="1_ng3it"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_j5rog"]
+
+[resource]
+script = ExtResource("2_j5rog")
+icon = ExtResource("1_ng3it")
+name = "Mineral de Titanor"
+recipe = Array[ExtResource("2_j5rog")]([])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Mineral nivel 7. Épico"
+rarity = "Epic"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

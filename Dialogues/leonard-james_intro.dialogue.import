@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://7yhd41lk6nvf"
+path="res://.godot/imported/leonard-james_intro.dialogue-81e0534765e2d0e7b18e6d0f38860b38.tres"
+
+[deps]
+
+source_file="res://Dialogues/leonard-james_intro.dialogue"
+dest_files=["res://.godot/imported/leonard-james_intro.dialogue-81e0534765e2d0e7b18e6d0f38860b38.tres"]
+
+[params]
+
+defaults=true

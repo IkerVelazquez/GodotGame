@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dsl01krofvtox"]
+
+[ext_resource type="Texture2D" uid="uid://bu34pmlk0yw8n" path="res://items/item293.png" id="1_vp7tk"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_ura5n"]
+[ext_resource type="Resource" uid="uid://h750c7fly3be" path="res://Resources/avernita_ore.tres" id="3_ura5n"]
+
+[resource]
+script = ExtResource("2_ura5n")
+icon = ExtResource("1_vp7tk")
+name = "Lingote de Avernita"
+recipe = Array[ExtResource("2_ura5n")]([ExtResource("3_ura5n")])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Material nivel 5. Forjado para armas y armaduras especiales"
+rarity = "Epic"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

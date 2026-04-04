@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://dnv1egrga7g07"]
+
+[ext_resource type="Script" uid="uid://c87onfm6njjs2" path="res://Scripts/tests.gd" id="1_e61gm"]
+[ext_resource type="PackedScene" uid="uid://b2p2unpu6dmly" path="res://Scenes/roster.tscn" id="3_evnqn"]
+[ext_resource type="Texture2D" uid="uid://ccab7hj7h3701" path="res://Turn Icon 32x32/XP024 A[turn].png" id="3_n0gq0"]
+[ext_resource type="Texture2D" uid="uid://cprhl8btu7dg1" path="res://Turn Icon 32x32/Vandice 1A[turn].png" id="4_n0gq0"]
+[ext_resource type="Texture2D" uid="uid://dwyaqut2rbjaw" path="res://Turn Icon 32x32/XP001 A[turn].png" id="5_mwcy4"]
+[ext_resource type="Texture2D" uid="uid://cw8r0ipf4kyow" path="res://Turn Icon 32x32/Therese 1A[turn].png" id="6_62ljc"]
+[ext_resource type="Texture2D" uid="uid://sxi4vqb4fbe5" path="res://Images/Grid_background.jpg" id="7_62ljc"]
+[ext_resource type="PackedScene" uid="uid://cu5bfoyb8j5os" path="res://Characters/zombie.tscn" id="7_be5ab"]
+[ext_resource type="Script" uid="uid://2m1raa31hso6" path="res://Scripts/camera.gd" id="9_be5ab"]
+
+[node name="Tests" type="Node2D"]
+script = ExtResource("1_e61gm")
+
+[node name="Roster" parent="." instance=ExtResource("3_evnqn")]
+z_index = 1
+position = Vector2(320, 75)
+test_scene = NodePath("..")
+kinima_texture = ExtResource("3_n0gq0")
+vandice_texture = ExtResource("4_n0gq0")
+kira_texture = ExtResource("5_mwcy4")
+therese_texture = ExtResource("6_62ljc")
+
+[node name="Enemy" type="Node2D" parent="." groups=["Enemy"]]
+position = Vector2(253, 471)
+
+[node name="spawn_points" type="Node2D" parent="."]
+
+[node name="SpawnPoint1" type="Node2D" parent="spawn_points"]
+position = Vector2(569, 400)
+
+[node name="SpawnPoint2" type="Node2D" parent="spawn_points"]
+position = Vector2(708, 465)
+
+[node name="SpawnPoint3" type="Node2D" parent="spawn_points"]
+position = Vector2(615, 544)
+
+[node name="characters" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.321569, 0.321569, 0.321569, 1)
+position = Vector2(575, 66)
+scale = Vector2(0.29, 0.29)
+texture = ExtResource("7_62ljc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("9_be5ab")
+
+[node name="Zombie" parent="." instance=ExtResource("7_be5ab")]
+z_index = -1
+position = Vector2(201, 471)

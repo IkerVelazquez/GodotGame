@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://dx7hu8xgi07ei"]
+
+[ext_resource type="Texture2D" uid="uid://8xn5vgsc7kp8" path="res://Tools/9_Wooden_Pickaxe.png" id="1_v1bob"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_bthgx"]
+[ext_resource type="Resource" uid="uid://brwjvqkkcqmgr" path="res://Resources/fiber.tres" id="3_qk1kg"]
+[ext_resource type="Resource" uid="uid://bsocbyl37i87e" path="res://Resources/wood_planks.tres" id="4_wddqq"]
+
+[resource]
+script = ExtResource("2_bthgx")
+icon = ExtResource("1_v1bob")
+name = "Pico de madera"
+recipe = Array[ExtResource("2_bthgx")]([ExtResource("3_qk1kg"), ExtResource("4_wddqq")])
+type = "Tool"
+tool_type = "pickaxe"
+tool_level = 1
+value = 0
+description = "Pico nivel 1. Común
+"
+rarity = "Common"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopItemResource" load_steps=3 format=3 uid="uid://dnwtdo7l3wbxo"]
+
+[ext_resource type="Resource" uid="uid://dgoiwkas5xm57" path="res://Resources/iron_ore.tres" id="1_o26js"]
+[ext_resource type="Script" uid="uid://cqc5pa3fukn23" path="res://Scripts/ShopItemResources.gd" id="2_cpd4b"]
+
+[resource]
+script = ExtResource("2_cpd4b")
+item = ExtResource("1_o26js")
+price = 4
+metadata/_custom_type_script = "uid://cqc5pa3fukn23"

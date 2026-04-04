@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://swpyklb2og6w"]
+
+[ext_resource type="Texture2D" uid="uid://cv084r6vobkx2" path="res://items/item294.png" id="1_7p0jk"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_r5ylc"]
+[ext_resource type="Resource" uid="uid://bsadr181am28j" path="res://Resources/charcoal.tres" id="3_bynqc"]
+[ext_resource type="Resource" uid="uid://bem3j8udrubtt" path="res://Resources/copper_ore.tres" id="4_qwfav"]
+
+[resource]
+script = ExtResource("2_r5ylc")
+icon = ExtResource("1_7p0jk")
+name = "Lingote de Cobre"
+recipe = Array[ExtResource("2_r5ylc")]([ExtResource("3_bynqc"), ExtResource("4_qwfav")])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Material nivel 1. Forjado para armas, armaduras y herramientas"
+rarity = "Common"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

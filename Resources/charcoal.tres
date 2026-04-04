@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bsadr181am28j"]
+
+[ext_resource type="Texture2D" uid="uid://b1w1fxppacmvr" path="res://items/item376.png" id="1_riolo"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_51ew6"]
+
+[resource]
+script = ExtResource("2_51ew6")
+icon = ExtResource("1_riolo")
+name = "Carbón"
+recipe = Array[ExtResource("2_51ew6")]([])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Material para combistible"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

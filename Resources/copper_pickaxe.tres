@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://cqer5htaa88sh"]
+
+[ext_resource type="Texture2D" uid="uid://cgmxv5m4r6iux" path="res://Tools/24_Copper_Pickaxe.png" id="1_kfp4q"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_qc6xa"]
+[ext_resource type="Resource" uid="uid://dx7hu8xgi07ei" path="res://Resources/pickaxe.tres" id="3_gkosl"]
+[ext_resource type="Resource" uid="uid://disjh3elqa0a0" path="res://Resources/coper.tres" id="4_olwc6"]
+[ext_resource type="Resource" uid="uid://brwjvqkkcqmgr" path="res://Resources/fiber.tres" id="5_c5qqo"]
+
+[resource]
+script = ExtResource("2_qc6xa")
+icon = ExtResource("1_kfp4q")
+name = "Pico de cobre"
+recipe = Array[ExtResource("2_qc6xa")]([ExtResource("3_gkosl"), ExtResource("4_olwc6"), ExtResource("4_olwc6"), ExtResource("4_olwc6"), ExtResource("5_c5qqo")])
+type = "Tool"
+tool_type = "pickaxe"
+tool_level = 2
+description = "Pico nivel 2. Común
+"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

@@ -1,0 +1,564 @@
+[gd_scene load_steps=33 format=3 uid="uid://b2p2unpu6dmly"]
+
+[ext_resource type="Script" uid="uid://crx6ed686aecm" path="res://Scripts/roster.gd" id="1_oyi2d"]
+[ext_resource type="Texture2D" uid="uid://j14stjeiddmy" path="res://James 1A[turn].png" id="1_ukefx"]
+[ext_resource type="Texture2D" uid="uid://ccab7hj7h3701" path="res://Turn Icon 32x32/XP024 A[turn].png" id="2_oyi2d"]
+[ext_resource type="Texture2D" uid="uid://b8k7l1r7gsed2" path="res://Turn Icon 32x32/Lucius 1A[turn].png" id="3_cg3wf"]
+[ext_resource type="Texture2D" uid="uid://bn746nlmjcics" path="res://Turn Icon 32x32/XP007 A[turn].png" id="5_cg3wf"]
+[ext_resource type="Texture2D" uid="uid://t03bnb6ln4ky" path="res://Images/Gradiante_naranja.jpg" id="5_hueks"]
+[ext_resource type="Script" uid="uid://c4fq8583d833p" path="res://Scripts/character_button.gd" id="5_nxkrp"]
+[ext_resource type="Texture2D" uid="uid://cw8r0ipf4kyow" path="res://Turn Icon 32x32/Therese 1A[turn].png" id="6_py1ib"]
+[ext_resource type="Texture2D" uid="uid://dwyaqut2rbjaw" path="res://Turn Icon 32x32/XP001 A[turn].png" id="7_hooky"]
+[ext_resource type="Texture2D" uid="uid://cmbjoans3s78j" path="res://Turn Icon 32x32/Kai 1A[turn].png" id="7_ru6ay"]
+[ext_resource type="Texture2D" uid="uid://b17e04re5w6ft" path="res://Images/Gradiante_azul.jpg" id="7_t2mpe"]
+[ext_resource type="Texture2D" uid="uid://d0w3cdt88gqlm" path="res://Images/Gradiante_dorado.jpg" id="9_0vieh"]
+[ext_resource type="Texture2D" uid="uid://cltkx7ax1n3gr" path="res://Turn Icon 32x32/Lucius 1D[turn].png" id="9_uqswx"]
+[ext_resource type="Texture2D" uid="uid://4frnotgdv2ei" path="res://Turn Icon 32x32/XP024 E[turn].png" id="10_7xjk4"]
+[ext_resource type="Texture2D" uid="uid://cprhl8btu7dg1" path="res://Turn Icon 32x32/Vandice 1A[turn].png" id="10_nxkrp"]
+[ext_resource type="Texture2D" uid="uid://cpnafgrhnoh4l" path="res://Images/Gradiante_rojo.jpg" id="11_vaj61"]
+[ext_resource type="Texture2D" uid="uid://qdrtllg54acu" path="res://Turn Icon 32x32/XP005 A[turn].png" id="13_qg2ym"]
+[ext_resource type="Texture2D" uid="uid://ckkkj8kyvbanh" path="res://Turn Icon 32x32/Kamura 1A[turn].png" id="18_e0uha"]
+[ext_resource type="Texture2D" uid="uid://bv54jfx704oaw" path="res://Images/Gradiente_blanco.jpg" id="19_6nofx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqswx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ru6ay"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0uha"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nofx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojr2k"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12t13"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrwtq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lt8hy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vaj61"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py1ib"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+
+[sub_resource type="Animation" id="Animation_qg2ym"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.517647)]
+}
+
+[sub_resource type="Animation" id="Animation_vaj61"]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.517647), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7xjk4"]
+_data = {
+&"RESET": SubResource("Animation_qg2ym"),
+&"flash": SubResource("Animation_vaj61")
+}
+
+[node name="Roster" type="Node2D"]
+script = ExtResource("1_oyi2d")
+james_texture = ExtResource("1_ukefx")
+nerine_texture = ExtResource("5_cg3wf")
+kinima_texture = ExtResource("5_cg3wf")
+lucius_texture = ExtResource("3_cg3wf")
+
+[node name="Buttons" type="Node2D" parent="."]
+z_index = 2
+scale = Vector2(1.5, 1.5)
+
+[node name="JamesButton" type="Button" parent="Buttons"]
+offset_right = 36.0
+offset_bottom = 36.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_uqswx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ru6ay")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e0uha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6nofx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ojr2k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_12t13")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nrwtq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_lt8hy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vaj61")
+theme_override_styles/normal = SubResource("StyleBoxFlat_py1ib")
+icon = ExtResource("1_ukefx")
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("5_nxkrp")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/JamesButton"]
+z_index = -1
+layout_mode = 0
+offset_right = 5000.0
+offset_bottom = 4500.0
+scale = Vector2(0.007, 0.008)
+texture = ExtResource("5_hueks")
+
+[node name="KaiButton" type="Button" parent="Buttons"]
+offset_left = 36.0
+offset_right = 72.0
+offset_bottom = 36.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_uqswx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ru6ay")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e0uha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6nofx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ojr2k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_12t13")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nrwtq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_lt8hy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vaj61")
+theme_override_styles/normal = SubResource("StyleBoxFlat_py1ib")
+icon = ExtResource("7_ru6ay")
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("5_nxkrp")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/KaiButton"]
+z_index = -1
+layout_mode = 0
+offset_right = 5000.0
+offset_bottom = 4500.0
+scale = Vector2(0.007, 0.008)
+texture = ExtResource("5_hueks")
+
+[node name="NerineButton" type="Button" parent="Buttons"]
+offset_left = 72.0
+offset_right = 108.0
+offset_bottom = 36.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_uqswx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ru6ay")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e0uha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6nofx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ojr2k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_12t13")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nrwtq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_lt8hy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vaj61")
+theme_override_styles/normal = SubResource("StyleBoxFlat_py1ib")
+icon = ExtResource("5_cg3wf")
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("5_nxkrp")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/NerineButton"]
+z_index = -1
+layout_mode = 0
+offset_right = 5000.0
+offset_bottom = 4500.0
+scale = Vector2(0.007, 0.008)
+texture = ExtResource("5_hueks")
+
+[node name="KiraButton" type="Button" parent="Buttons"]
+offset_left = 108.0
+offset_right = 144.0
+offset_bottom = 36.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_uqswx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ru6ay")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e0uha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6nofx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ojr2k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_12t13")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nrwtq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_lt8hy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vaj61")
+theme_override_styles/normal = SubResource("StyleBoxFlat_py1ib")
+icon = ExtResource("7_hooky")
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("5_nxkrp")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/KiraButton"]
+z_index = -1
+layout_mode = 0
+offset_right = 5000.0
+offset_bottom = 4500.0
+scale = Vector2(0.007, 0.008)
+texture = ExtResource("5_hueks")
+
+[node name="LuciusButton" type="Button" parent="Buttons"]
+offset_left = 144.0
+offset_right = 180.0
+offset_bottom = 36.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_uqswx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ru6ay")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e0uha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6nofx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ojr2k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_12t13")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nrwtq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_lt8hy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vaj61")
+theme_override_styles/normal = SubResource("StyleBoxFlat_py1ib")
+icon = ExtResource("3_cg3wf")
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("5_nxkrp")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/LuciusButton"]
+z_index = -1
+layout_mode = 0
+offset_right = 5000.0
+offset_bottom = 4000.0
+scale = Vector2(0.007, 0.009)
+texture = ExtResource("7_t2mpe")
+
+[node name="FuturistluciusButton" type="Button" parent="Buttons"]
+offset_left = 180.0
+offset_right = 216.0
+offset_bottom = 36.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_uqswx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ru6ay")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e0uha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6nofx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ojr2k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_12t13")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nrwtq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_lt8hy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vaj61")
+theme_override_styles/normal = SubResource("StyleBoxFlat_py1ib")
+icon = ExtResource("9_uqswx")
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("5_nxkrp")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/FuturistluciusButton"]
+z_index = -1
+layout_mode = 0
+offset_right = 5000.0
+offset_bottom = 4000.0
+scale = Vector2(0.007, 0.009)
+texture = ExtResource("7_t2mpe")
+
+[node name="KinimaButton" type="Button" parent="Buttons"]
+offset_left = 216.0
+offset_right = 252.0
+offset_bottom = 36.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_uqswx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ru6ay")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e0uha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6nofx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ojr2k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_12t13")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nrwtq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_lt8hy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vaj61")
+theme_override_styles/normal = SubResource("StyleBoxFlat_py1ib")
+icon = ExtResource("2_oyi2d")
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("5_nxkrp")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/KinimaButton"]
+z_index = -1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 8751.0
+offset_bottom = 8002.0
+scale = Vector2(0.004, 0.004)
+texture = ExtResource("11_vaj61")
+
+[node name="WildkinimaButton" type="Button" parent="Buttons"]
+offset_left = 252.0
+offset_right = 288.0
+offset_bottom = 36.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_uqswx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ru6ay")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e0uha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6nofx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ojr2k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_12t13")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nrwtq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_lt8hy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vaj61")
+theme_override_styles/normal = SubResource("StyleBoxFlat_py1ib")
+icon = ExtResource("10_7xjk4")
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("5_nxkrp")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/WildkinimaButton"]
+z_index = -1
+layout_mode = 1
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 8751.0
+offset_bottom = 8002.0
+scale = Vector2(0.004, 0.004)
+texture = ExtResource("11_vaj61")
+
+[node name="VandiceButton" type="Button" parent="Buttons"]
+offset_left = 288.0
+offset_right = 324.0
+offset_bottom = 36.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_uqswx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ru6ay")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e0uha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6nofx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ojr2k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_12t13")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nrwtq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_lt8hy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vaj61")
+theme_override_styles/normal = SubResource("StyleBoxFlat_py1ib")
+icon = ExtResource("10_nxkrp")
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("5_nxkrp")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/VandiceButton"]
+z_index = -1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 8751.0
+offset_bottom = 8002.0
+scale = Vector2(0.004, 0.004)
+texture = ExtResource("11_vaj61")
+
+[node name="ThereseButton" type="Button" parent="Buttons"]
+offset_left = 252.0
+offset_top = 36.0
+offset_right = 288.0
+offset_bottom = 72.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_uqswx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ru6ay")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e0uha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6nofx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ojr2k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_12t13")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nrwtq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_lt8hy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vaj61")
+theme_override_styles/normal = SubResource("StyleBoxFlat_py1ib")
+icon = ExtResource("6_py1ib")
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("5_nxkrp")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/ThereseButton"]
+z_index = -1
+layout_mode = 0
+offset_right = 7200.0
+offset_bottom = 6000.0
+scale = Vector2(0.005, 0.006)
+texture = ExtResource("9_0vieh")
+
+[node name="ThaiButton" type="Button" parent="Buttons"]
+offset_left = 216.0
+offset_top = 36.0
+offset_right = 252.0
+offset_bottom = 72.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_uqswx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ru6ay")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e0uha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6nofx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ojr2k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_12t13")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nrwtq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_lt8hy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vaj61")
+theme_override_styles/normal = SubResource("StyleBoxFlat_py1ib")
+icon = ExtResource("13_qg2ym")
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("5_nxkrp")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/ThaiButton"]
+z_index = -1
+layout_mode = 0
+offset_right = 7200.0
+offset_bottom = 6000.0
+scale = Vector2(0.005, 0.006)
+texture = ExtResource("9_0vieh")
+
+[node name="KamuraButton" type="Button" parent="Buttons"]
+offset_left = 288.0
+offset_top = 36.0
+offset_right = 324.0
+offset_bottom = 72.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_uqswx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ru6ay")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e0uha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6nofx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ojr2k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_12t13")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nrwtq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_lt8hy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vaj61")
+theme_override_styles/normal = SubResource("StyleBoxFlat_py1ib")
+icon = ExtResource("18_e0uha")
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("5_nxkrp")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/KamuraButton"]
+z_index = -1
+layout_mode = 0
+offset_right = 7200.0
+offset_bottom = 6000.0
+scale = Vector2(0.005, 0.006)
+texture = ExtResource("19_6nofx")
+
+[node name="ConfirmButton" type="Button" parent="."]
+offset_left = 144.0
+offset_top = 319.0
+offset_right = 221.0
+offset_bottom = 350.0
+text = "continue
+"
+
+[node name="Slot1" type="TextureRect" parent="."]
+z_index = 2
+offset_top = 192.0
+offset_right = 40.0
+offset_bottom = 232.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Slot1"]
+position = Vector2(44, 0)
+scale = Vector2(3, 3)
+
+[node name="Label" type="Label" parent="Slot1"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 48.0
+offset_bottom = 63.0
+
+[node name="RemoveButton1" type="Button" parent="Slot1"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 84.0
+offset_bottom = 95.0
+text = "ELIMINAR"
+
+[node name="Slot2" type="TextureRect" parent="."]
+z_index = 2
+offset_left = 112.0
+offset_top = 192.0
+offset_right = 152.0
+offset_bottom = 232.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Slot2"]
+position = Vector2(44, 0)
+scale = Vector2(3, 3)
+
+[node name="Label" type="Label" parent="Slot2"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 40.0
+offset_right = 49.0
+offset_bottom = 63.0
+
+[node name="RemoveButton2" type="Button" parent="Slot2"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 84.0
+offset_bottom = 95.0
+text = "ELIMINAR"
+
+[node name="Slot3" type="TextureRect" parent="."]
+z_index = 2
+offset_left = 232.0
+offset_top = 192.0
+offset_right = 272.0
+offset_bottom = 232.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Slot3"]
+position = Vector2(44, 0)
+scale = Vector2(3, 3)
+
+[node name="Label" type="Label" parent="Slot3"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 48.0
+offset_bottom = 63.0
+
+[node name="RemoveButton3" type="Button" parent="Slot3"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 84.0
+offset_bottom = 95.0
+text = "ELIMINAR"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = 1
+offset_left = -480.0
+offset_top = -384.0
+offset_right = 824.0
+offset_bottom = 572.0
+color = Color(1, 1, 1, 0.517647)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_7xjk4")
+}
+speed_scale = 5.0
+
+[connection signal="pressed" from="Buttons/JamesButton" to="." method="_on_james_pressed"]
+[connection signal="pressed" from="Buttons/JamesButton" to="Buttons/JamesButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/KaiButton" to="." method="_on_kai_pressed"]
+[connection signal="pressed" from="Buttons/KaiButton" to="Buttons/KaiButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/NerineButton" to="." method="_on_nerine_pressed"]
+[connection signal="pressed" from="Buttons/NerineButton" to="Buttons/NerineButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/KiraButton" to="." method="_on_kira_pressed"]
+[connection signal="pressed" from="Buttons/KiraButton" to="Buttons/KiraButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/LuciusButton" to="." method="_on_lucius_pressed"]
+[connection signal="pressed" from="Buttons/LuciusButton" to="Buttons/LuciusButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/FuturistluciusButton" to="." method="_on_futuristlucius_pressed"]
+[connection signal="pressed" from="Buttons/FuturistluciusButton" to="Buttons/FuturistluciusButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/KinimaButton" to="." method="_on_kinima_pressed"]
+[connection signal="pressed" from="Buttons/KinimaButton" to="Buttons/KinimaButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/WildkinimaButton" to="." method="_on_wildkinima_pressed"]
+[connection signal="pressed" from="Buttons/WildkinimaButton" to="Buttons/WildkinimaButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/VandiceButton" to="." method="_on_vandice_pressed"]
+[connection signal="pressed" from="Buttons/VandiceButton" to="Buttons/VandiceButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/ThereseButton" to="." method="_on_therese_pressed"]
+[connection signal="pressed" from="Buttons/ThereseButton" to="Buttons/ThereseButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/ThaiButton" to="." method="_on_thai_pressed"]
+[connection signal="pressed" from="Buttons/ThaiButton" to="Buttons/ThaiButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/KamuraButton" to="." method="_on_kamura_pressed"]
+[connection signal="pressed" from="Buttons/KamuraButton" to="Buttons/KamuraButton" method="_on_button_pressed"]
+[connection signal="pressed" from="ConfirmButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Slot1/RemoveButton1" to="." method="_on_remove_button_1_pressed"]
+[connection signal="pressed" from="Slot2/RemoveButton2" to="." method="_on_remove_button_2_pressed"]
+[connection signal="pressed" from="Slot3/RemoveButton3" to="." method="_on_remove_button_3_pressed"]

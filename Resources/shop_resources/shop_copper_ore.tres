@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopItemResource" load_steps=3 format=3 uid="uid://bvdy147fcwn3d"]
+
+[ext_resource type="Resource" uid="uid://bem3j8udrubtt" path="res://Resources/copper_ore.tres" id="1_syab5"]
+[ext_resource type="Script" uid="uid://cqc5pa3fukn23" path="res://Scripts/ShopItemResources.gd" id="2_hw24i"]
+
+[resource]
+script = ExtResource("2_hw24i")
+item = ExtResource("1_syab5")
+price = 2
+metadata/_custom_type_script = "uid://cqc5pa3fukn23"

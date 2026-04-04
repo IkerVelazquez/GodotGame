@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cpc1nbe62xcir"]
+
+[ext_resource type="Texture2D" uid="uid://dm6qijwage41f" path="res://items/item320.png" id="1_fdflk"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_mc0g7"]
+
+[resource]
+script = ExtResource("2_mc0g7")
+icon = ExtResource("1_fdflk")
+name = "Mineral de Rubí"
+recipe = Array[ExtResource("2_mc0g7")]([])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Mineral nivel 4. Raro"
+rarity = "Rare"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

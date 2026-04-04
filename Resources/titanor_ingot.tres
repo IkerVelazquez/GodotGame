@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://ddv5im2uax60r"]
+
+[ext_resource type="Texture2D" uid="uid://b2vo5cl31xjep" path="res://items/item300.png" id="1_owcmo"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_bsddg"]
+[ext_resource type="Resource" uid="uid://bsadr181am28j" path="res://Resources/charcoal.tres" id="3_ax30q"]
+[ext_resource type="Resource" uid="uid://nqp5jp1bxlcs" path="res://Resources/irisium_ingot.tres" id="4_1alm1"]
+
+[resource]
+script = ExtResource("2_bsddg")
+icon = ExtResource("1_owcmo")
+name = "Lingote de Titanor"
+recipe = Array[ExtResource("2_bsddg")]([ExtResource("3_ax30q"), ExtResource("3_ax30q"), ExtResource("3_ax30q"), ExtResource("3_ax30q"), ExtResource("3_ax30q"), ExtResource("3_ax30q"), ExtResource("4_1alm1")])
+type = "Material"
+tool_type = ""
+tool_level = 1
+value = 0
+description = "Material nivel 7. Forjado para armas y armaduras muy resistentes"
+rarity = "Epic"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

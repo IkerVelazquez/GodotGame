@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b67064x8kko0u"]
+
+[ext_resource type="Texture2D" uid="uid://3rf2ljc1lasw" path="res://items/item323.png" id="1_xosha"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_2shlh"]
+
+[resource]
+script = ExtResource("2_2shlh")
+icon = ExtResource("1_xosha")
+name = "Mineral de Manalith"
+recipe = Array[ExtResource("2_2shlh")]([])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Mineral nivel 8. Legendario"
+rarity = "Legendary"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

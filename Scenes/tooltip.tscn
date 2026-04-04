@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsb4lcndfouvu"]
+
+[ext_resource type="Script" uid="uid://20fjdt6ryvuc" path="res://Scripts/tooltip.gd" id="1_ogi1g"]
+[ext_resource type="FontFile" uid="uid://dmq1cx7w47jx3" path="res://pixel_art_font.ttf" id="2_617o6"]
+
+[node name="Tooltip" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ogi1g")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = 10
+clip_contents = true
+layout_mode = 0
+offset_right = 173.0
+offset_bottom = 100.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 173.0
+offset_bottom = 100.0
+theme_override_fonts/normal_font = ExtResource("2_617o6")
+bbcode_enabled = true
+fit_content = true
+scroll_following = true
+autowrap_mode = 2

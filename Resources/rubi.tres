@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://b7ghc6tn1kfxd"]
+
+[ext_resource type="Texture2D" uid="uid://clodkbcy2nabx" path="res://items/item259.png" id="1_3xkee"]
+[ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_oeww3"]
+[ext_resource type="Resource" uid="uid://bsadr181am28j" path="res://Resources/charcoal.tres" id="3_ckef5"]
+[ext_resource type="Resource" uid="uid://cpc1nbe62xcir" path="res://Resources/rubi_ore.tres" id="4_bhspm"]
+
+[resource]
+script = ExtResource("2_oeww3")
+icon = ExtResource("1_3xkee")
+name = "Rubí"
+recipe = Array[ExtResource("2_oeww3")]([ExtResource("3_ckef5"), ExtResource("3_ckef5"), ExtResource("4_bhspm")])
+type = "Material"
+tool_type = ""
+tool_level = 0
+value = 0
+description = "Material nivel 4. Forjado para armas y armaduras "
+rarity = "Rare"
+metadata/_custom_type_script = "uid://nyuu436tn40f"

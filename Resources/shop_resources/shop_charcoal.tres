@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopItemResource" load_steps=3 format=3 uid="uid://xlaamarakptl"]
+
+[ext_resource type="Resource" uid="uid://bsadr181am28j" path="res://Resources/charcoal.tres" id="1_2k1pg"]
+[ext_resource type="Script" uid="uid://cqc5pa3fukn23" path="res://Scripts/ShopItemResources.gd" id="2_0lou3"]
+
+[resource]
+script = ExtResource("2_0lou3")
+item = ExtResource("1_2k1pg")
+price = 1
+metadata/_custom_type_script = "uid://cqc5pa3fukn23"

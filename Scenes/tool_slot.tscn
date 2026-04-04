@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg2bbt17jri5d"]
+
+[ext_resource type="Script" uid="uid://bvpq375h6o1qo" path="res://Scripts/tool_slot.gd" id="1_ji25k"]
+
+[node name="ToolSlot" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ji25k")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 1

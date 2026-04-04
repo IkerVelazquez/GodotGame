@@ -1,0 +1,52 @@
+[gd_scene load_steps=16 format=3 uid="uid://dflbe5cp4qmi5"]
+
+[ext_resource type="Script" uid="uid://cyxkryqtgwbua" path="res://Scripts/shop_npc.gd" id="1_s7ss6"]
+[ext_resource type="Script" uid="uid://cqc5pa3fukn23" path="res://Scripts/ShopItemResources.gd" id="2_nba6r"]
+[ext_resource type="Texture2D" uid="uid://bqghgnrhyy2pw" path="res://NPC/Generic Male NPCs.png" id="2_vp5no"]
+[ext_resource type="Resource" uid="uid://bvdy147fcwn3d" path="res://Resources/shop_resources/shop_copper_ore.tres" id="4_2oamc"]
+[ext_resource type="Resource" uid="uid://xlaamarakptl" path="res://Resources/shop_resources/shop_charcoal.tres" id="4_ujptx"]
+[ext_resource type="Resource" uid="uid://dnwtdo7l3wbxo" path="res://Resources/shop_resources/shop_iron_ore.tres" id="5_87m8u"]
+[ext_resource type="Resource" uid="uid://uc27wevfsq0o" path="res://Resources/shop_resources/shop_gold_ore.tres" id="6_torjm"]
+[ext_resource type="Resource" uid="uid://1qlcw7sjn0q7" path="res://Resources/shop_resources/shop_rubi_ore.tres" id="7_ksxxx"]
+[ext_resource type="Resource" uid="uid://cllkbuwama7ww" path="res://Resources/shop_resources/shop_avernita_ore.tres" id="8_torjm"]
+[ext_resource type="Resource" uid="uid://dlrfv42q8nk58" path="res://Resources/shop_resources/shop_irisium_ore.tres" id="9_fj55g"]
+[ext_resource type="Resource" uid="uid://bo3pauwcd32tf" path="res://Resources/shop_resources/shop_titanor_ore.tres" id="10_2cuqd"]
+[ext_resource type="Resource" uid="uid://ctqqb0ewhhjf4" path="res://Resources/shop_resources/shop_manalith_ore.tres" id="11_1nk7f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xrye"]
+atlas = ExtResource("2_vp5no")
+region = Rect2(800, 0, 80, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s7ss6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xrye")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xrye"]
+size = Vector2(169, 146)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_s7ss6")
+shop_items = Array[ExtResource("2_nba6r")]([ExtResource("4_ujptx"), ExtResource("4_2oamc"), ExtResource("5_87m8u"), ExtResource("6_torjm"), ExtResource("7_ksxxx"), ExtResource("8_torjm"), ExtResource("9_fj55g"), ExtResource("10_2cuqd"), ExtResource("11_1nk7f")])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s7ss6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4xrye")
+
+[node name="InteractionLabel" type="Label" parent="."]
+visible = false
+offset_left = 62.0
+offset_top = -59.0
+offset_right = 102.0
+offset_bottom = -36.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
