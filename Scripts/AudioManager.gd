@@ -4,6 +4,10 @@ extends Node
 var music_player: AudioStreamPlayer
 var sfx_player: AudioStreamPlayer
 
+var music_player_1: AudioStreamPlayer
+var music_player_2: AudioStreamPlayer
+var active_player := 1
+
 # Volumen (valores de -80 a 24, donde 0 es volumen normal)
 var music_volume: float = 0.0:
 	set(value):
@@ -25,6 +29,12 @@ var sfx_volume: float = 0.0:
 var current_music: AudioStream = null
 
 func _ready():
+	
+	music_player_1 = AudioStreamPlayer.new()
+	music_player_2 = AudioStreamPlayer.new()
+
+	add_child(music_player_1)
+	add_child(music_player_2)
 	# Crear los players de audio
 	music_player = AudioStreamPlayer.new()
 	sfx_player = AudioStreamPlayer.new()
@@ -139,3 +149,36 @@ func get_music_volume_percent() -> float:
 func set_music_volume_percent(percent: float):
 	var clamped_percent = clamp(percent, 0.0, 100.0)
 	music_volume = (clamped_percent / 100.0) * 104.0 - 80.0
+
+func crossfade_music(new_music_path: String, duration: float = 2.0, target_volume_db: float = 0.0):
+	var new_music = load(new_music_path)
+	if not new_music:
+		push_error("No se pudo cargar la música")
+		return
+	
+	var from_player
+	var to_player
+	
+	if active_player == 1:
+		from_player = music_player_1
+		to_player = music_player_2
+		active_player = 2
+	else:
+		from_player = music_player_2
+		to_player = music_player_1
+		active_player = 1
+	
+	to_player.stream = new_music
+	to_player.volume_db = -80.0
+	to_player.play()
+	
+	var tween = create_tween()
+	
+	# 🔥 usa volumen específico
+	tween.tween_property(to_player, "volume_db", target_volume_db, duration)
+	
+	# baja la anterior
+	tween.parallel().tween_property(from_player, "volume_db", -80.0, duration)
+	
+	await tween.finished
+	from_player.stop()

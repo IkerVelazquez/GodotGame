@@ -90,7 +90,7 @@ close-open_map={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Dialogues/intro.dialogue", "res://Dialogues/leonard-james_intro.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Dialogues/intro.dialogue", "res://Dialogues/leonard-james_intro.dialogue", "res://leonard_advertise.dialogue", "res://james_vs_zombies.dialogue")
 
 [rendering]
 

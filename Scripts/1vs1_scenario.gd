@@ -12,6 +12,9 @@ var enemy_instance: Node2D = null
 @onready var enemy_scene = preload("res://Characters/zombie_enemy.tscn")  # El enemigo modificado
 
 func _ready() -> void:
+	$ColorRect.position = Vector2(-1920,-1080)
+	GlobalData.mouse_disable = false
+	
 	GameEvents.max_party_size = 1  # Solo un jugador
 	
 	# CONECTAR SEÑAL
@@ -19,7 +22,9 @@ func _ready() -> void:
 	
 	# SPAWNEAR PERSONAJES AUTOMÁTICAMENTE
 	spawn_characters()
-
+	
+	await get_tree().create_timer(0.5).timeout
+	$ColorRect.position = Vector2(-982,-256)
 # Función para spawnear todos los personajes
 func spawn_characters():
 	# Spawnear jugador

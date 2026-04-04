@@ -1,11 +1,13 @@
 ~ start
 
+do GlobalData.write_sound()
 if GlobalData.leonard_first_talk == true
 	Leonard: James, eres la última persona en el pueblo que no te has enterado de[wait=1], bueno...
 	
 	
 	- ¿De qué habla señor Leonard?.
 		set GlobalData.mouse_disable = true
+		do GlobalData.write_sound()
 		Leonard: Todas las aldeas pelean de nuevo.[wait=0.8] Buscan los[wave] cristales[/wave], [wait=0.8]quieren reunirlos de nuevo
 		James: Lo siento señor Leonard, pero prefiero no entrometerme en asuntos de ese estilo, aunque no tiene de qué preocuparse, la aldea es un lugar seguro
 		Leonard: Lo fue alguna vez gracias a ti James, siempre estaremos en deuda contigo
@@ -18,6 +20,7 @@ if GlobalData.leonard_first_talk == true
 	
 	- Necesito irme.
 		set GlobalData.mouse_disable = true
+		do GlobalData.write_sound()
 		James: Lo siento señor Leonard, no puedo quedarme, necesito ir a recolectar madera para el invierno
 		set GlobalData.leonard_first_talk = false
 		set Levels.in_cutscene = false

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dwfalb7wrwh60"
+path="res://.godot/imported/james_vs_zombies.dialogue-45d27871007483ee20e1dd7db8c9a21f.tres"
+
+[deps]
+
+source_file="res://james_vs_zombies.dialogue"
+dest_files=["res://.godot/imported/james_vs_zombies.dialogue-45d27871007483ee20e1dd7db8c9a21f.tres"]
+
+[params]
+
+defaults=true
