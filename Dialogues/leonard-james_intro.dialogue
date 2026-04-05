@@ -14,8 +14,6 @@ if GlobalData.leonard_first_talk == true
 		set GlobalData.leonard_first_talk = false
 		set Levels.in_cutscene = false
 		do MisionSystem.complete_mission("Habla con Leonard")
-		do MisionSystem.add_mission("Recolecta Madera")
-		do GlobalData.first_mision = false
 		=> END
 	
 	- Necesito irme.
@@ -26,8 +24,6 @@ if GlobalData.leonard_first_talk == true
 		set Levels.in_cutscene = false
 		set GlobalData.mouse_disable = true
 		do MisionSystem.complete_mission("Habla con Leonard")
-		do MisionSystem.add_mission("Recolecta Madera")
-		do GlobalData.first_mision = false
 		=> END
 		
 	=> END

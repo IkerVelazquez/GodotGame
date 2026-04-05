@@ -9,11 +9,12 @@ var enemy_node: Node2D = null
 var current_attack_damage: int = 0
 var current_is_critical: bool = false
 var current_mp: float = 0.0
-var max_mp: float = 100.0
 var special_available: bool = false
 
 @export var health: int = 100
 @export var max_health: int = 100
+
+@export var max_mp: float = 100.0
 
 @export var portrait: Texture2D
 @export var dash_duration := 0.2
@@ -116,22 +117,28 @@ func _create_stance_change_effect():
 func _physics_process(delta: float) -> void:
 	if is_in_timing_minigame:
 		$Control.visible = false
+		$Control2.visible = false
 		return
 		
 	if GameEvents.is_player_turn and type in GameEvents.turn_order:
 		if GameEvents.turn_order[type] == GameEvents.current_turn:
 			$Control.visible = true
+			$Control2.visible = true
 			if GameEvents.atack == true:
 				GameEvents.atack = false
 		else:
 			$Control.visible = false
+			$Control2.visible = false
 	else:
 		$Control.visible = false  # Ocultar durante turno enemigo
+		$Control2.visible = false
 			
 	if is_dashing:
 		$Control.visible = false
+		$Control2.visible = false
 	elif is_attacking:
 		$Control.visible = false
+		$Control2.visible = false
 
 func find_enemy():
 	if get_tree().has_group("Enemy"):
@@ -325,6 +332,7 @@ func _start_damage_effect():
 func die():
 	print(type, " ha sido derrotado!")
 	$player_animations.play("Die")
+	await $player_animations.animation_finished
 	# Notificar a GameEvents que este personaje murió
 	GameEvents.character_died(type)
 	
@@ -336,6 +344,7 @@ func die():
 	# Eliminar del grupo Player
 	remove_from_group("Player")
 	await get_tree().create_timer(1.0).timeout
+	GameEvents.player_died.emit()
 	queue_free()
 
 func _on_effect_animation_finished(effect_node):
@@ -417,6 +426,10 @@ func apply_damage_with_accuracy(is_critical: bool = false):
 		print("   - ¿Es crítico? ", is_critical)
 		
 		enemy.take_damage(current_attack_damage, is_critical)
+		
+		if enemy.health <= 0:
+			print("🎉 Enemigo derrotado por el ataque!")
+			
 		current_attack_damage = base_attack_damage
 		current_is_critical = false  # ← RESETEAR
 		

@@ -35,6 +35,9 @@ signal turn_changed(is_player_turn: bool)
 signal timing_attack_started()
 signal timing_attack_completed(accuracy: float)
 
+signal player_died
+signal enemy_died
+
 var in_cutscene: bool = false
 
 func _ready():

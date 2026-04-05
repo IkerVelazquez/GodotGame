@@ -9,13 +9,16 @@ func _process(delta):
 	pass
 	
 func _on_area_to_interact_body_entered(body: Node2D) -> void:
-	if GlobalData.leonard_first_talk == true:
+	if GlobalData.leonard_first_talk:
 		if body.is_in_group("Player"):
+			MisionSystem.complete_mission("Habla con Leonard")
+			MisionSystem.add_mission("Recolecta Madera")
 			$Marker.visible = true
 			Levels.in_cutscene = true
 			GlobalData.mouse_disable = true
 			GlobalData.mouse_disable = false
 			DialogueManager.show_dialogue_balloon(first_dialogue,"start")
+			
 	else:
 			GlobalData.mouse_disable = true
 			$Marker.visible = false

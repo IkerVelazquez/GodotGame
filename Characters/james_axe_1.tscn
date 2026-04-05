@@ -1,8 +1,7 @@
-[gd_scene load_steps=80 format=3 uid="uid://tkn76ndb57ao"]
+[gd_scene load_steps=79 format=3 uid="uid://tkn76ndb57ao"]
 
 [ext_resource type="Script" uid="uid://dv5sfo8xe2vhx" path="res://Scripts/melee_character.gd" id="1_7xjdc"]
-[ext_resource type="Texture2D" uid="uid://83la5lmnc7xh" path="res://portraits/James.png" id="2_7xjdc"]
-[ext_resource type="AudioStream" uid="uid://kgh06aow5jjx" path="res://Sounds/Female_grunting.wav" id="3_duaek"]
+[ext_resource type="Texture2D" uid="uid://j14stjeiddmy" path="res://James 1A[turn].png" id="2_7xjdc"]
 [ext_resource type="Texture2D" uid="uid://w8fkvklqxumr" path="res://Players/James 1A[axe1].png" id="3_nr0ow"]
 [ext_resource type="Texture2D" uid="uid://0tiie5woo2xx" path="res://Effects/Effect_Impact_1_305x383.png" id="4_qvh7s"]
 [ext_resource type="PackedScene" uid="uid://d28m2vhv2f1xd" path="res://Scenes/actions.tscn" id="5_cfrts"]
@@ -221,7 +220,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_07h1m")
 }],
-"loop": true,
+"loop": false,
 "name": &"Die",
 "speed": 5.0
 }, {
@@ -525,12 +524,12 @@ font_size = 20
 script = ExtResource("1_7xjdc")
 health = 50
 max_health = 50
+max_mp = 50.0
 portrait = ExtResource("2_7xjdc")
-balance_icon_sound = ExtResource("3_duaek")
 
 [node name="player_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lpjwu")
-animation = &"Return"
+animation = &"Die"
 autoplay = "Idle"
 
 [node name="Effect" type="AnimatedSprite2D" parent="."]

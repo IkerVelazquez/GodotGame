@@ -11,7 +11,18 @@ var enemy_instance: Node2D = null
 @onready var player_scene = preload("res://Characters/james_axe_1.tscn")  # Tu personaje existente
 @onready var enemy_scene = preload("res://Characters/zombie_enemy.tscn")  # El enemigo modificado
 
+var first_duialogue = load("res://james_vs_zombies.dialogue")
+
 func _ready() -> void:
+	
+	
+	GameEvents.player_died.connect(_on_player_died)
+	GameEvents.enemy_died.connect(_on_enemy_died)
+	
+	
+	if GlobalData.first_mision:
+		DialogueManager.show_dialogue_balloon(first_duialogue, "start")
+		
 	$ColorRect.position = Vector2(-1920,-1080)
 	GlobalData.mouse_disable = false
 	
@@ -118,3 +129,24 @@ func _on_continue_pressed() -> void:
 	print("=== JUEGO INICIADO ===")
 	print("Turn order final: ", GameEvents.turn_order)
 	print("Turno actual: ", GameEvents.current_turn)
+
+func _on_enemy_died():
+	print("🎉 GANASTE")
+	await get_tree().create_timer(2.0).timeout
+	if GlobalData.first_mision:	
+		GlobalData.first_mision = false
+		GlobalData.leonard_first_talk = false
+	$ColorRect.position = Vector2(-1920,-1080)
+	$ColorRect/AnimationPlayer.play("fade_out")
+	await get_tree().create_timer(2.0).timeout
+	get_tree().change_scene_to_file("res://Scenario/forest.tscn")
+
+func _on_player_died():
+	print("💀 PERDISTE")
+	$ColorRect.position = Vector2(-1920,-1080)
+	$ColorRect/AnimationPlayer.play("fade_out")
+	await get_tree().create_timer(2.0).timeout
+	$ColorRect/AnimationPlayer.play("fade_in")
+	await get_tree().create_timer(0.5).timeout
+	$ColorRect.position = Vector2(-982,-256)
+	get_tree().reload_current_scene()

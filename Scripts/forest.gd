@@ -1,46 +1,85 @@
 extends Node2D
 
-@export var first_door_closed = AudioStream
+@export var first_door_closed: AudioStream
 var play_first_door: AudioStreamPlayer
-
+var dialogue_triggered := false  # Control para evitar múltiples ejecuciones
+var mission_given := false  # Control para evitar misiones duplicadas
 
 var resource = load("res://Dialogues/intro.dialogue")
-var resource2 = load("res://leonard_advertise.dialogue")
-var dialogue_line = await DialogueManager.get_next_dialogue_line(resource, "house_out")
-
-var music_player_1: AudioStreamPlayer
-var music_player_2: AudioStreamPlayer
-
-var active_player := 1
 
 func _ready() -> void:
+	$CinematicLayer.visible = false
+	$CinematicLayerEnemy.visible = false
 	
-	AudioManager.crossfade_music("res://Music/village_theme.mp3", 1.0,-10) # empieza directo
-	AudioManager.set_music_volume_percent(60)
+	# Reproducir música
+	AudioManager.crossfade_music("res://Music/village_theme.mp3", 0.0, -10)
+	AudioManager.set_music_volume(60)
+	
+	# Crear player para puerta
 	play_first_door = AudioStreamPlayer.new()
 	add_child(play_first_door)
 	
+	# Verificar si es la primera misión y no se ha ejecutado antes
+	if GlobalData.first_mision and not dialogue_triggered:
+		dialogue_triggered = true
+		MisionSystem.add_mission("Habla con Leonard")
+		_start_first_mission_dialogue()
+	else:
+		# No es primera misión, iniciar directamente
+		$ColorRect/AnimationPlayer.play("change_level")
+		Levels.in_cutscene = false
+
+func _start_first_mission_dialogue():
 	play_first_door.stream = first_door_closed
-	
 	Levels.in_cutscene = true
+	
 	await get_tree().create_timer(2.0).timeout
 	play_first_door.play()
+	
 	await get_tree().create_timer(2.52).timeout
-	Levels.house_out_triggered.connect(_on_house_out)
+	
+	# Conectar la señal una sola vez
+	if not Levels.house_out_triggered.is_connected(_on_house_out):
+		Levels.house_out_triggered.connect(_on_house_out)
+	
+	# Mostrar diálogo
 	DialogueManager.show_dialogue_balloon(resource, "house_out")
 
 func _on_house_out():
+	# Esta función se llama desde el diálogo con Levels.trigger_house_out()
 	$ColorRect/AnimationPlayer.play("fade_out")
-
-
 
 func _on_area_to_fight_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		# 🔥 CAMBIO DE MÚSICA SUAVE
-		AudioManager.crossfade_music("res://Music/funky_loop.mp3", 3.5,-4)
-		DialogueManager.show_dialogue_balloon(resource2, "start")
+		# Cambio de música
+		AudioManager.crossfade_music("res://Music/funky_loop.mp3", 4.0, -4)
+		
+		# Reproducir sonido de arbusto
+		AudioManager.play_sfx("res://Sounds/bush_moving.mp3")  # Asume que tienes este sonido
+		
 		Levels.in_cutscene = true
+		await get_tree().create_timer(2.0).timeout
+		
+		$CinematicLayer.visible = true
+		$Player.visible = false
+		$Player.get_node("Minimap").visible = false
+		$CinematicLayer.play_cinematic()
+		await get_tree().create_timer(0.3).timeout
+		AudioManager.play_sfx("res://Sounds/Epic_transition.mp3")
+		
+		await get_tree().create_timer(3.0).timeout
+		
+		$CinematicLayerEnemy.visible = true
+		
+		# Reproducir SFX de zombie
+		AudioManager.play_sfx("res://Sounds/zombie_roar.mp3")  # Cambia a .wav si es necesario
+		AudioManager.play_sfx("res://Sounds/zombie_laugh.mp3", -6.0, 1.2)
+		
+		$CinematicLayerEnemy.play_zombie_cinematic()
+		await get_tree().create_timer(2.0).timeout
+		AudioManager.play_sfx("res://Sounds/Whoosh.mp3")
 		await get_tree().create_timer(1.0).timeout
 		$ColorRect/AnimationPlayer.play("fade_in")
-		await get_tree().create_timer(1.7).timeout
+		
+		await get_tree().create_timer(0.5).timeout
 		get_tree().change_scene_to_file("res://Scenario/village_scenario.tscn")

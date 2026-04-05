@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://b77cym4w84cpo"]
+
+[ext_resource type="Texture2D" uid="uid://vowggdx4i12a" path="res://Free_Enemy/zombie_face.png" id="1_0ivu6"]
+[ext_resource type="Script" uid="uid://bqhthg5xr4ya5" path="res://Scripts/cinematic_layer_enemy.gd" id="1_wd5ak"]
+
+[node name="CinematicLayerEnemy" type="CanvasLayer"]
+script = ExtResource("1_wd5ak")
+
+[node name="TopBar" type="ColorRect" parent="."]
+z_index = 10
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomBar" type="ColorRect" parent="."]
+z_index = 10
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -307.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="ZombiesContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Zombie1" type="TextureRect" parent="ZombiesContainer"]
+z_index = 5
+layout_mode = 0
+offset_left = -500.0
+offset_top = 100.0
+offset_right = -460.0
+offset_bottom = 140.0
+scale = Vector2(10, 10)
+texture = ExtResource("1_0ivu6")
+flip_h = true
+
+[node name="Zombie2" type="TextureRect" parent="ZombiesContainer"]
+z_index = 4
+layout_mode = 0
+offset_left = -500.0
+offset_top = 180.0
+offset_right = -460.0
+offset_bottom = 220.0
+scale = Vector2(8, 8)
+texture = ExtResource("1_0ivu6")
+flip_h = true
+
+[node name="Zombie3" type="TextureRect" parent="ZombiesContainer"]
+z_index = 5
+layout_mode = 0
+offset_left = -500.0
+offset_top = 141.0
+offset_right = -460.0
+offset_bottom = 181.0
+scale = Vector2(9, 9)
+texture = ExtResource("1_0ivu6")
+flip_h = true

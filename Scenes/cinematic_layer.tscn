@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://csojcctq1arc7"]
+
+[ext_resource type="Script" uid="uid://jdhc4gwe3c1h" path="res://Scripts/cinematic_layer.gd" id="1_dqpqb"]
+[ext_resource type="Texture2D" uid="uid://83la5lmnc7xh" path="res://portraits/James.png" id="2_6hosj"]
+
+[node name="CinematicLayer" type="CanvasLayer"]
+script = ExtResource("1_dqpqb")
+
+[node name="TopBar" type="ColorRect" parent="."]
+z_index = 10
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomBar" type="ColorRect" parent="."]
+z_index = 10
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -307.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="Face" type="TextureRect" parent="."]
+z_index = 5
+offset_left = -491.0
+offset_top = 104.0
+offset_right = -451.0
+offset_bottom = 144.0
+scale = Vector2(15, 15)
+texture = ExtResource("2_6hosj")
+stretch_mode = 5
+
+[node name="Mask" type="ColorRect" parent="."]
+offset_left = -94.0
+offset_top = -162.0
+offset_right = -54.0
+offset_bottom = -122.0
