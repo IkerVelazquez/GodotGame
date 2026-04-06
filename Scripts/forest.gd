@@ -6,6 +6,9 @@ var dialogue_triggered := false  # Control para evitar múltiples ejecuciones
 var mission_given := false  # Control para evitar misiones duplicadas
 
 var resource = load("res://Dialogues/intro.dialogue")
+var tutorial_complete = load("res://Dialogues/return_tutorial.dialogue")
+var keys_tutorial = load("res://Dialogues/keys_tutorial.dialogue")
+var barriers = load("res://Dialogues/barreras.dialogue")
 
 func _ready() -> void:
 	$CinematicLayer.visible = false
@@ -24,11 +27,19 @@ func _ready() -> void:
 		dialogue_triggered = true
 		MisionSystem.add_mission("Habla con Leonard")
 		_start_first_mission_dialogue()
+		$AreaToFight.monitoring = true
+		$Player.position = Vector2(1471,882)
+		$Leonard.position = Vector2(1576,904)
 	else:
 		# No es primera misión, iniciar directamente
 		$ColorRect/AnimationPlayer.play("change_level")
 		Levels.in_cutscene = false
-
+		$AreaToFight.monitoring = false
+		$Player.position = Vector2(1827,1666)
+		$Leonard.position = Vector2(1868,1666)
+		DialogueManager.show_dialogue_balloon(tutorial_complete, "start")
+		
+		
 func _start_first_mission_dialogue():
 	play_first_door.stream = first_door_closed
 	Levels.in_cutscene = true
@@ -83,3 +94,17 @@ func _on_area_to_fight_body_entered(body: Node2D) -> void:
 		
 		await get_tree().create_timer(0.5).timeout
 		get_tree().change_scene_to_file("res://Scenario/village_scenario.tscn")
+
+
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void: #Barreras
+	if body.is_in_group("Player"):
+		DialogueManager.show_dialogue_balloon(barriers,"start")
+
+
+
+func _on_keys_tutrial_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		DialogueManager.show_dialogue_balloon(keys_tutorial,"start")
+		$Keys_tutrial.monitoring = false

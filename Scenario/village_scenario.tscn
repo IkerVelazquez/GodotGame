@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1yd64xts8uh5"]
+[gd_scene load_steps=13 format=3 uid="uid://c1yd64xts8uh5"]
 
 [ext_resource type="Script" uid="uid://clvd57w0v2gih" path="res://Scripts/1vs1_scenario.gd" id="1_lavv6"]
 [ext_resource type="Texture2D" uid="uid://bbwfm7f4p6yl" path="res://Backgrounds/forest_background.png" id="2_mvae8"]
+[ext_resource type="Texture2D" uid="uid://7esor4xbxaw4" path="res://Free_Enemy/XP052 B[anim].png" id="3_lavv6"]
 
 [sub_resource type="Animation" id="Animation_lavv6"]
 length = 0.001
@@ -56,9 +57,46 @@ _data = {
 &"fade_out": SubResource("Animation_tegca")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tegca"]
+atlas = ExtResource("3_lavv6")
+region = Rect2(0, 1440, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7fmv"]
+atlas = ExtResource("3_lavv6")
+region = Rect2(160, 1440, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xok8c"]
+atlas = ExtResource("3_lavv6")
+region = Rect2(320, 1440, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_124fc"]
+atlas = ExtResource("3_lavv6")
+region = Rect2(480, 1440, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rccet"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tegca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7fmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xok8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_124fc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Village_scenario" type="Node2D"]
 position = Vector2(1920, 1080)
 script = ExtResource("1_lavv6")
+total_enemies = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -4
@@ -86,3 +124,11 @@ color = Color(0, 0, 0, 1)
 libraries = {
 &"": SubResource("AnimationLibrary_tegca")
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1344, -756)
+
+[node name="PuppetZombie" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2033, -716)
+sprite_frames = SubResource("SpriteFrames_rccet")
+autoplay = "default"

@@ -43,6 +43,7 @@ var is_in_timing_minigame: bool = false
 
 func _ready() -> void:
 	
+	GameEvents.heal_player.connect(heal_full)
 	audio_player = AudioStreamPlayer.new()
 	add_child(audio_player)
 	
@@ -161,6 +162,22 @@ func start_attack() -> void:
 		
 	start_timing_minigame()
 
+func heal_full():
+	var heal_amount = max_health - health
+	
+	health = max_health
+	$Control/HP.value = health
+	
+	# Mostrar popup de curación
+	var popup = damage_popup_scene.instantiate()
+	get_parent().add_child(popup)
+	popup.global_position = global_position + Vector2(0, -50)
+	
+	popup.setup(heal_amount) # puedes modificar tu popup para que sea verde
+	popup.start_animation()
+	
+	print("💚 Curado completamente: +", heal_amount)
+	
 # NUEVA FUNCIÓN: Minijuego de timing
 func start_timing_minigame():
 	is_in_timing_minigame = true
@@ -303,6 +320,7 @@ func take_damage(damage: int):
 	$Control/HP.max_value = max_health
 	$Control/HP.value = health
 	$player_animations.play("Hurt")
+	play_random_attack_sound()
 	_start_damage_effect()
 	await get_tree().create_timer(1.0).timeout
 	if health <= 0:
@@ -393,6 +411,7 @@ func _on_player_animations_frame_changed() -> void:
 	if $player_animations.animation == "Attack" and $player_animations.frame == 2:
 		call_deferred("play_hit_effect")
 		GameEvents.request_camera_shake(1,0.3)
+		play_random_attack_sound()
 		$Area_to_attack/CollisionShape2D.disabled = false
 		var is_critical_now = current_attack_damage > base_attack_damage * 1.2
 		apply_damage_with_accuracy(current_is_critical)
@@ -401,21 +420,21 @@ func _on_player_animations_frame_changed() -> void:
 		
 	if $player_animations.animation == "Attack2" and $player_animations.frame == 2:
 		call_deferred("play_hit_effect")
-		GameEvents.request_camera_shake(1,0.3)
+		GameEvents.request_camera_shake(0.5, 0.2)
 		$Area_to_attack/CollisionShape2D.disabled = false
 	elif $player_animations.animation == "Attack2" and $player_animations.frame == 3:
 		$Area_to_attack/CollisionShape2D.disabled = true
 		
 	if $player_animations.animation == "Attack3" and $player_animations.frame == 2:
 		call_deferred("play_hit_effect")
-		GameEvents.request_camera_shake(1,0.3)
+		GameEvents.request_camera_shake(0.5, 0.2)
 		$Area_to_attack/CollisionShape2D.disabled = false
 	elif $player_animations.animation == "Attack3" and $player_animations.frame == 3:
 		$Area_to_attack/CollisionShape2D.disabled = true
 		
 	if $player_animations.animation == "Special" and $player_animations.frame == 2:
 		call_deferred("play_hit_effect")
-		GameEvents.request_camera_shake(3,0.3)
+		GameEvents.request_camera_shake(2,0.2)
 		$Area_to_attack/CollisionShape2D.disabled = true
 
 func apply_damage_with_accuracy(is_critical: bool = false):
@@ -453,3 +472,19 @@ func update_stance_visuals():
 		GameEvents.Stance.BALANCED:
 			$player_animations.modulate = Color.WHITE
 			audio_player.play()
+			
+func play_random_attack_sound():
+	
+	# 50% probabilidad para cada sonido
+	var random_value = randf()
+	
+	if is_attacking:
+		if random_value < 0.5:
+			AudioManager.play_sfx("res://Sounds/Female_attack.wav")
+		else:
+			AudioManager.play_sfx("res://Sounds/Female_attack2.wav")
+	else:
+		if random_value < 0.5:
+			AudioManager.play_sfx("res://Sounds/Female_damage.wav")
+		else:
+			AudioManager.play_sfx("res://Sounds/Female_damage2.wav")

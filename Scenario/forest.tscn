@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://qhvbalvqfv6m"]
+[gd_scene load_steps=28 format=4 uid="uid://qhvbalvqfv6m"]
 
 [ext_resource type="Texture2D" uid="uid://dvyy6hythnw7x" path="res://ForestRPG/Enviroment-Forest.png" id="1_3wjdk"]
 [ext_resource type="Script" uid="uid://vhxyqbjtexxq" path="res://Scripts/forest.gd" id="1_67y51"]
@@ -728,6 +728,15 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_k67x7"]
 radius = 49.163
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppri7"]
+size = Vector2(71, 1796)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3ma8"]
+size = Vector2(75, 1598.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67y51"]
+size = Vector2(84, 63)
+
 [node name="Forest" type="Node2D"]
 script = ExtResource("1_67y51")
 first_door_closed = ExtResource("2_onne8")
@@ -752,10 +761,11 @@ tile_map_data = PackedByteArray("AABaADIAAAANAAUAAABaADMAAAANAAYAAABaADQAAAANAAc
 tile_set = SubResource("TileSet_ux0e7")
 
 [node name="Player" parent="." instance=ExtResource("5_8265s")]
-position = Vector2(1471, 882)
+position = Vector2(1827, 1666)
 scale = Vector2(0.25, 0.25)
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 z_index = 100
 offset_left = -20.0
 offset_top = -49.0
@@ -770,7 +780,7 @@ libraries = {
 
 [node name="Leonard" parent="." instance=ExtResource("6_vn43h")]
 z_index = -1
-position = Vector2(1576, 904)
+position = Vector2(1868, 1665)
 scale = Vector2(0.155, 0.155)
 
 [node name="AreaToFight" type="Area2D" parent="."]
@@ -787,4 +797,84 @@ stream = ExtResource("9_ux0e7")
 
 [node name="CinematicLayerEnemy" parent="." instance=ExtResource("12_67y51")]
 
+[node name="Barriers" type="Node2D" parent="."]
+position = Vector2(2622, 1864)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Barriers"]
+position = Vector2(-26, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2(25.5, -368)
+shape = SubResource("RectangleShape2D_ppri7")
+debug_color = Color(0.708955, 0, 0.217875, 1)
+
+[node name="Area2D" type="Area2D" parent="Barriers/StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/StaticBody2D/Area2D"]
+position = Vector2(23.5, -345)
+shape = SubResource("RectangleShape2D_m3ma8")
+debug_color = Color(0.501116, 0.580498, 0.0437525, 0.42)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Barriers"]
+position = Vector2(-1678, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/StaticBody2D2"]
+position = Vector2(25.5, -368)
+shape = SubResource("RectangleShape2D_ppri7")
+debug_color = Color(0.708955, 0, 0.217875, 1)
+
+[node name="Area2D" type="Area2D" parent="Barriers/StaticBody2D2"]
+position = Vector2(4, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/StaticBody2D2/Area2D"]
+position = Vector2(23.5, -345)
+shape = SubResource("RectangleShape2D_m3ma8")
+debug_color = Color(0.501116, 0.580498, 0.0437525, 0.42)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Barriers"]
+position = Vector2(-1190, -1157)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/StaticBody2D3"]
+position = Vector2(25.5, -368)
+shape = SubResource("RectangleShape2D_ppri7")
+debug_color = Color(0.708955, 0, 0.217875, 1)
+
+[node name="Area2D" type="Area2D" parent="Barriers/StaticBody2D3"]
+position = Vector2(4, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/StaticBody2D3/Area2D"]
+position = Vector2(23.5, -354.75)
+shape = SubResource("RectangleShape2D_m3ma8")
+debug_color = Color(0.501116, 0.580498, 0.0437525, 0.42)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Barriers"]
+position = Vector2(-1215, 400)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/StaticBody2D4"]
+position = Vector2(25.5, -368)
+shape = SubResource("RectangleShape2D_ppri7")
+debug_color = Color(0.708955, 0, 0.217875, 1)
+
+[node name="Area2D" type="Area2D" parent="Barriers/StaticBody2D4"]
+position = Vector2(0, -65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/StaticBody2D4/Area2D"]
+position = Vector2(23.5, -321.5)
+shape = SubResource("RectangleShape2D_m3ma8")
+debug_color = Color(0.501116, 0.580498, 0.0437525, 0.42)
+
+[node name="Keys_tutrial" type="Area2D" parent="."]
+position = Vector2(1820, 1780)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Keys_tutrial"]
+position = Vector2(7, -112.5)
+shape = SubResource("RectangleShape2D_67y51")
+
 [connection signal="body_entered" from="AreaToFight" to="." method="_on_area_to_fight_body_entered"]
+[connection signal="body_entered" from="Barriers/StaticBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Barriers/StaticBody2D2/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Barriers/StaticBody2D3/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Barriers/StaticBody2D4/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Keys_tutrial" to="." method="_on_keys_tutrial_body_exited"]

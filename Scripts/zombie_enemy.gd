@@ -11,7 +11,7 @@ var original_position: Vector2
 @export var stop_distance: float = 50.0
 
 # Variables para parry
-@export var parry_chance: float = 1.0  # 30% de probabilidad
+@export var parry_chance: float = 0.25  # 30% de probabilidad
 var is_parrying: bool = false
 var parry_window_active: bool = false
 
@@ -135,7 +135,7 @@ func _activate_parry():
 	_show_parry_effect()
 	
 	# Shake de cámara
-	GameEvents.request_camera_shake(3.0, 0.2)
+	GameEvents.request_camera_shake(2.0, 0.2)
 	
 	# Desactivar parry después de la animación
 	await get_tree().create_timer(0.5).timeout
@@ -183,6 +183,7 @@ func take_damage(damage: int, is_critical: bool = false):
 	health -= damage
 	show_damage_popup(damage, is_critical)
 	$enemy_animations.play("Hurt")
+	play_random_attack_sound()
 	print("💥 Enemigo recibe ", damage, " de daño. Vida restante: ", health)
 	
 	if health <= 0:
@@ -229,11 +230,13 @@ func die():
 func _on_enemy_animations_frame_changed() -> void:
 	if $enemy_animations.animation == "Attack" and $enemy_animations.frame == 2:
 		_activate_attack_area()
+		play_random_attack_sound()
 	elif $enemy_animations.animation == "Attack2" and $enemy_animations.frame == 2:
 		_activate_attack_area()
+		play_random_attack_sound()
 
 func _activate_attack_area():
-	GameEvents.request_camera_shake(2.0, 0.3)
+	GameEvents.request_camera_shake(1,0.3)
 	$Area_to_attack/CollisionShape2D.disabled = false
 
 func _on_area_to_attack_body_entered(body: Node2D) -> void:
@@ -245,3 +248,19 @@ func _on_area_to_attack_body_entered(body: Node2D) -> void:
 func _on_enemy_animations_animation_finished() -> void:
 	if $enemy_animations.animation == "Hurt":
 		$enemy_animations.play("Idle")
+
+func play_random_attack_sound():
+	
+	# 50% probabilidad para cada sonido
+	var random_value = randf()
+	
+	if is_attacking:
+		if random_value < 0.5:
+			AudioManager.play_sfx("res://Sounds/Zombie_atack.wav")
+		else:
+			AudioManager.play_sfx("res://Sounds/Zombie_atack2.wav")
+	else:
+		if random_value < 0.5:
+			AudioManager.play_sfx("res://Sounds/Zombie_hurt.wav")
+		else:
+			AudioManager.play_sfx("res://Sounds/Zombie_hurt2.wav")

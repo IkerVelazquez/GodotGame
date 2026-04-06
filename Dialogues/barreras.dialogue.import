@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c0x2m5v3t6evi"
+path="res://.godot/imported/barreras.dialogue-c8034ca7fe7690ab64752a6df8fcfe96.tres"
+
+[deps]
+
+source_file="res://Dialogues/barreras.dialogue"
+dest_files=["res://.godot/imported/barreras.dialogue-c8034ca7fe7690ab64752a6df8fcfe96.tres"]
+
+[params]
+
+defaults=true

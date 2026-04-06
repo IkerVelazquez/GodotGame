@@ -37,6 +37,7 @@ signal timing_attack_completed(accuracy: float)
 
 signal player_died
 signal enemy_died
+signal heal_player
 
 var in_cutscene: bool = false
 

@@ -3,48 +3,127 @@ extends Node2D
 @onready var player_spawn_point = $PlayerSpawnPoint
 @onready var enemy_spawn_point = $EnemySpawnPoint
 @onready var characters_container = $Characters
+@onready var camera: Camera2D = $Camera2D  # ← Ahora es hija de esta escena
+@onready var puppet_zombie: AnimatedSprite2D = $PuppetZombie
 
+var original_camera_position: Vector2 = Vector2.ZERO
 var player_instance: Node2D = null
 var enemy_instance: Node2D = null
 
-# Precargar las escenas (ajusta las rutas según tu proyecto)
-@onready var player_scene = preload("res://Characters/james_axe_1.tscn")  # Tu personaje existente
-@onready var enemy_scene = preload("res://Characters/zombie_enemy.tscn")  # El enemigo modificado
+var shake_intensity: float = 0.0
+var shake_duration: float = 0.0
+
+# Precargar las escenas
+@onready var player_scene = preload("res://Characters/james_axe_1.tscn")
+@onready var enemy_scene = preload("res://Characters/zombie_enemy.tscn")
 
 var first_duialogue = load("res://james_vs_zombies.dialogue")
 
+
+@export var total_enemies: int = 3
+
+var enemies_spawned: int = 0
+var enemies_killed: int = 0
+
 func _ready() -> void:
+	# Configurar cámara como CURRENT
+	if camera:
+		camera.enabled = true
+		camera.make_current()  # Forzar que sea la cámara activa
+		original_camera_position = camera.position
+		print("✅ Cámara configurada - Posición original: ", original_camera_position)
 	
-	
+	# Conectar señales
+	GameEvents.camera_shake.connect(_on_camera_shake_requested)
 	GameEvents.player_died.connect(_on_player_died)
 	GameEvents.enemy_died.connect(_on_enemy_died)
 	
-	
 	if GlobalData.first_mision:
 		DialogueManager.show_dialogue_balloon(first_duialogue, "start")
+		$ColorRect.position = Vector2(-1920, -1080)
+		$ColorRect/AnimationPlayer.play("fade_in")
+		GlobalData.first_mision = false
 		
-	$ColorRect.position = Vector2(-1920,-1080)
+	puppet_zombie.visible = false
 	GlobalData.mouse_disable = false
 	
-	GameEvents.max_party_size = 1  # Solo un jugador
-	
-	# CONECTAR SEÑAL
+	GameEvents.max_party_size = 1
 	GameEvents.turn_changed.connect(_on_turn_changed)
 	
-	# SPAWNEAR PERSONAJES AUTOMÁTICAMENTE
 	spawn_characters()
 	
 	await get_tree().create_timer(0.5).timeout
-	$ColorRect.position = Vector2(-982,-256)
+	$ColorRect.position = Vector2(-982, -256)
+
+func _process(delta):
+	if shake_duration > 0:
+		shake_duration -= delta
+		var shake_x = randf_range(-shake_intensity, shake_intensity)
+		var shake_y = randf_range(-shake_intensity, shake_intensity)
+		camera.position = original_camera_position + Vector2(shake_x, shake_y)
+		
+		if shake_duration <= 0:
+			camera.position = original_camera_position
+
+func _on_camera_shake_requested(intensity: float, duration: float):
+	print("📷 SHAKE RECIBIDO - Intensidad: ", intensity, " Duración: ", duration)
+	shake_intensity = intensity
+	shake_duration = duration
+
+# ... (resto de tu código existente sin cambios) ...
+			
 # Función para spawnear todos los personajes
 func spawn_characters():
 	# Spawnear jugador
 	player_instance = spawn_player(player_scene)
 	
 	# Spawnear enemigo
-	enemy_instance = spawn_enemy(enemy_scene)
+	spawn_next_enemy()
 	
+func spawn_enemy_with_puppet():
+	if enemies_spawned >= total_enemies:
+		print("🎉 TODOS LOS ENEMIGOS DERROTADOS")
+		_on_all_enemies_defeated()
+		return
 
+	enemies_spawned += 1
+
+	print("🧟 Spawn enemigo ", enemies_spawned, "/", total_enemies)
+
+	# Posición inicial fuera de pantalla (izquierda)
+	puppet_zombie.global_position =  Vector2(
+	enemy_spawn_point.global_position.x - 1500, # fuera de pantalla
+	enemy_spawn_point.global_position.y
+	)        # MISMA ALTURA
+	puppet_zombie.visible = true
+	puppet_zombie.play("default") # animación correr
+
+	var tween = create_tween()
+
+	# Mover hacia el punto
+	tween.tween_property(
+		puppet_zombie,
+		"global_position",
+		enemy_spawn_point.global_position,
+		2.5
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+	# Al llegar
+	tween.tween_callback(Callable(self, "_on_puppet_arrived"))
+
+func _on_puppet_arrived():
+	print("🧟 Puppet llegó")
+
+	puppet_zombie.stop()
+	puppet_zombie.visible = false
+
+	# Spawnear enemigo real
+	var enemy = enemy_scene.instantiate()
+	characters_container.add_child(enemy)
+	enemy.global_position = enemy_spawn_point.global_position
+	enemy.add_to_group("Enemy")
+	GameEvents.next_turn()
+	
 # Spawnear jugador en posición fija
 func spawn_player(character_scene: PackedScene) -> Node2D:
 	if character_scene == null:
@@ -102,6 +181,19 @@ func spawn_enemy(enemy_scene: PackedScene) -> Node2D:
 	
 	return enemy
 
+func spawn_next_enemy():
+	if enemies_spawned >= total_enemies:
+		return
+	
+	var enemy = enemy_scene.instantiate()
+	characters_container.add_child(enemy)
+	enemy.global_position = enemy_spawn_point.global_position
+	enemy.add_to_group("Enemy")
+	
+	enemies_spawned += 1
+	
+	print("👹 Enemigo generado: ", enemies_spawned, "/", total_enemies)
+	
 # Obtener la posición REAL del jugador
 func get_player_position() -> Vector2:
 	if player_instance and is_instance_valid(player_instance):
@@ -131,18 +223,29 @@ func _on_continue_pressed() -> void:
 	print("Turno actual: ", GameEvents.current_turn)
 
 func _on_enemy_died():
-	print("🎉 GANASTE")
+	enemies_killed += 1
+	
+	print("💀 Enemigos eliminados: ", enemies_killed, "/", total_enemies)
+	await get_tree().create_timer(1.0).timeout
+	GameEvents.heal_player.emit()
+	spawn_enemy_with_puppet()
+	
+	
+func _on_all_enemies_defeated():
+	print("🏆 NIVEL COMPLETADO")
 	await get_tree().create_timer(2.0).timeout
-	if GlobalData.first_mision:	
-		GlobalData.first_mision = false
-		GlobalData.leonard_first_talk = false
+	GlobalData.leonard_first_talk = false
+	
 	$ColorRect.position = Vector2(-1920,-1080)
 	$ColorRect/AnimationPlayer.play("fade_out")
+	
 	await get_tree().create_timer(2.0).timeout
 	get_tree().change_scene_to_file("res://Scenario/forest.tscn")
 
 func _on_player_died():
 	print("💀 PERDISTE")
+	enemies_killed = 0
+	enemies_spawned = 0
 	$ColorRect.position = Vector2(-1920,-1080)
 	$ColorRect/AnimationPlayer.play("fade_out")
 	await get_tree().create_timer(2.0).timeout
