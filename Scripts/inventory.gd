@@ -8,7 +8,7 @@ var items: Array = []
  
 ##region Testing
 @export var ITEM : Item
-#@export var ITEM2 : Item
+@export var ITEM2 : Item
 #@export var ITEM3 : Item
 func _ready():
 	var player = get_parent()  # Porque Inventory es hijo directo de Player
@@ -25,14 +25,14 @@ func _ready():
 		slots[i].slot_index = i
 	
 	
-	await get_tree().create_timer(2).timeout
-	for i in range(1000):
-		add_item(ITEM)
+	#await get_tree().create_timer(2).timeout
+	#for i in range(1000):
+		#add_item(ITEM)
 		#await get_tree().create_timer(0.1).timeout
-	#await get_tree().create_timer(2).timeout
-	#add_item(ITEM2)
-	#await get_tree().create_timer(2).timeout
-	#add_item(ITEM3)
+	await get_tree().create_timer(2).timeout
+	add_item(ITEM2)
+	await get_tree().create_timer(2).timeout
+	add_item(ITEM)
 ##endregion
  
 # 1. Buscar si ya existe ese item (stack)
@@ -93,16 +93,16 @@ func get_item_count(item):
 
 func get_item_count_total(item: Item) -> int:
 	var count = 0
-	
-	if item.type == "Currency":
-		return _get_currency_amount(item)
-	
-	# Contar en inventario
 	for i in get_children():
-		if i is Slot and i.item == item:
-			count += i.amount
-	
-	# Contar si es una herramienta y está equipada
+		if i is Slot and i.item != null:
+			print("Inventario slot:", i.item.name, "Cantidad:", i.amount)
+			print("Comparando:", i.item, "con", item)
+			print("Iguales?:", i.item == item)
+			print("Nombre:", i.item.name, item.name)
+			if i.item == item:  # <- Este es probable problema
+				count += i.amount
+
+	# Contar si es herramienta equipada
 	if item.type == "Tool":
 		var player = _get_player()
 		if player and player.has_method("get_equipped_tool"):
@@ -110,6 +110,7 @@ func get_item_count_total(item: Item) -> int:
 			if equipped and equipped.name == item.name:
 				count += 1
 	
+	print("Total de", item.name, "en inventario + equipado:", count)
 	return count
 	
 func _get_currency_amount(coin: Item) -> int:

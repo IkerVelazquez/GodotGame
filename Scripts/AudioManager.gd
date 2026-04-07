@@ -39,7 +39,6 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _initialize_audio_system():
-	print("🎵 Inicializando AudioManager...")
 	
 	# Verificar buses de audio
 	_check_audio_buses()
@@ -77,20 +76,15 @@ func _initialize_audio_system():
 		sfx_pool.append(sfx)
 	
 	sfx_pool_initialized = true
-	print("✅ AudioManager inicializado con ", sfx_pool.size(), " canales SFX")
 
 func _check_audio_buses():
 	# Verificar si los buses existen
 	if not _bus_exists("Music"):
 		print("⚠️ Advertencia: Bus 'Music' no existe. Créalo en Project Settings > Audio")
 		print("   Ve a Project > Project Settings > Audio > Bus Layout")
-	else:
-		print("✅ Bus 'Music' encontrado")
 	
 	if not _bus_exists("SFX"):
 		print("⚠️ Advertencia: Bus 'SFX' no existe. Créalo en Project Settings > Audio")
-	else:
-		print("✅ Bus 'SFX' encontrado")
 
 func _bus_exists(bus_name: String) -> bool:
 	for i in range(AudioServer.bus_count):

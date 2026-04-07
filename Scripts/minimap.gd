@@ -23,8 +23,6 @@ func _ready() -> void:
 	minimap_size = size  # Será (512, 512)
 	minimap_center = minimap_size / 2  # (256, 256)
 	
-	print("Minimapa tamaño: ", minimap_size)
-	print("Centro del minimapa: ", minimap_center)
 	
 	setup_icon_layer()
 	create_player_icon()

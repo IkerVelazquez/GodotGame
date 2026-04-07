@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://qhvbalvqfv6m"]
+[gd_scene load_steps=30 format=4 uid="uid://qhvbalvqfv6m"]
 
 [ext_resource type="Texture2D" uid="uid://dvyy6hythnw7x" path="res://ForestRPG/Enviroment-Forest.png" id="1_3wjdk"]
 [ext_resource type="Script" uid="uid://vhxyqbjtexxq" path="res://Scripts/forest.gd" id="1_67y51"]
@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://bvos5sj3r7ekr" path="res://Images/houses_tilesets.png" id="7_k67x7"]
 [ext_resource type="PackedScene" uid="uid://csojcctq1arc7" path="res://Scenes/cinematic_layer.tscn" id="8_nnxr3"]
 [ext_resource type="AudioStream" uid="uid://cb8numlxiw0bj" path="res://Sounds/bush_moving.mp3" id="9_ux0e7"]
+[ext_resource type="PackedScene" uid="uid://blwqpi57615ik" path="res://Scenes/destructible_tree.tscn" id="11_m3ma8"]
 [ext_resource type="PackedScene" uid="uid://b77cym4w84cpo" path="res://Scenes/cinematic_layer_enemy.tscn" id="12_67y51"]
+[ext_resource type="PackedScene" uid="uid://bxnfjbkedyrod" path="res://Scenes/mineable_rock.tscn" id="12_onne8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i78x6"]
 texture = ExtResource("1_3wjdk")
@@ -761,7 +763,8 @@ tile_map_data = PackedByteArray("AABaADIAAAANAAUAAABaADMAAAANAAYAAABaADQAAAANAAc
 tile_set = SubResource("TileSet_ux0e7")
 
 [node name="Player" parent="." instance=ExtResource("5_8265s")]
-position = Vector2(1827, 1666)
+z_index = -1
+position = Vector2(1843, 1776)
 scale = Vector2(0.25, 0.25)
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -871,6 +874,114 @@ position = Vector2(1820, 1780)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Keys_tutrial"]
 position = Vector2(7, -112.5)
 shape = SubResource("RectangleShape2D_67y51")
+
+[node name="Trees" type="Node2D" parent="."]
+position = Vector2(1741, 1093)
+
+[node name="Tree" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(-37, 501)
+
+[node name="Tree2" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(161, 712)
+
+[node name="Tree3" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(127, 410)
+
+[node name="Tree4" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(-97, 568)
+
+[node name="Tree5" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(9, 751)
+
+[node name="Tree6" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(165, 615)
+
+[node name="Tree7" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(250, 570)
+
+[node name="Tree8" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(365, 490)
+
+[node name="Tree9" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(307, 688)
+
+[node name="Tree10" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(401, 632)
+
+[node name="Tree11" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(539, 573)
+
+[node name="Tree12" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(462, 441)
+
+[node name="Tree13" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(284, 351)
+
+[node name="Tree14" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(594, 666)
+
+[node name="Tree15" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(729, 599)
+
+[node name="Tree16" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(413, 814)
+
+[node name="Tree17" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(171, 827)
+
+[node name="Tree18" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(323, 854)
+
+[node name="Tree19" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(695, 805)
+
+[node name="Tree20" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(819, 726)
+
+[node name="Tree21" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(496, 724)
+
+[node name="Tree22" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(247, 933)
+
+[node name="Tree23" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(151, 1041)
+
+[node name="Tree24" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(168, 960)
+
+[node name="Tree25" parent="Trees" instance=ExtResource("11_m3ma8")]
+position = Vector2(390, 1066)
+
+[node name="Rocks" type="Node2D" parent="."]
+position = Vector2(1732, 1098)
+
+[node name="Mineable_rock" parent="Rocks" instance=ExtResource("12_onne8")]
+position = Vector2(372, 755)
+
+[node name="Mineable_rock2" parent="Rocks" instance=ExtResource("12_onne8")]
+position = Vector2(343, 551)
+
+[node name="Mineable_rock3" parent="Rocks" instance=ExtResource("12_onne8")]
+position = Vector2(201, 344)
+
+[node name="Mineable_rock4" parent="Rocks" instance=ExtResource("12_onne8")]
+position = Vector2(517, 516)
+
+[node name="Mineable_rock5" parent="Rocks" instance=ExtResource("12_onne8")]
+position = Vector2(743, 679)
+
+[node name="Mineable_rock6" parent="Rocks" instance=ExtResource("12_onne8")]
+position = Vector2(229, 978)
+
+[node name="Mineable_rock7" parent="Rocks" instance=ExtResource("12_onne8")]
+position = Vector2(-21, 654)
+
+[node name="Mineable_rock8" parent="Rocks" instance=ExtResource("12_onne8")]
+position = Vector2(554, 190)
+
+[node name="Mineable_rock9" parent="Rocks" instance=ExtResource("12_onne8")]
+position = Vector2(559, 1028)
 
 [connection signal="body_entered" from="AreaToFight" to="." method="_on_area_to_fight_body_entered"]
 [connection signal="body_entered" from="Barriers/StaticBody2D/Area2D" to="." method="_on_area_2d_body_entered"]

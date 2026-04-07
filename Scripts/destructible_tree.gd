@@ -20,6 +20,7 @@ var chop_progress: float = 0.0
 @onready var progress_bar = $ProgressBar
 @onready var interaction_label = $InteractionLabel
 
+var dialogue = preload("res://Dialogues/first_tree.dialogue")
 # Clase interna para definir drops
 class DropItem:
 	var item: Item
@@ -159,6 +160,9 @@ func destroy_tree() -> void:
 	leaf2.visible = false
 	
 	start_respawn()
+	
+	if MisionSystem.is_mission_active("Recolecta madera"):
+		DialogueManager.show_dialogue_balloon(dialogue,"start")
 
 func start_respawn() -> void:
 	var random_time = randf_range(respawn_time_min, respawn_time_max)

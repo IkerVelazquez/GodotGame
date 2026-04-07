@@ -28,6 +28,8 @@ func _ready():
 	
 	# Verificar si ya está equipado
 	_check_if_already_equipped()
+	
+	check()
 
 func _ensure_containers():
 	# Crear MaterialsContainer si no existe

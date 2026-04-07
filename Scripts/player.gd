@@ -18,8 +18,10 @@ var inventory_open: bool = false
 
 func _ready():
 	
-
 	add_child(tooltip)
+	tooltip.hide_tooltip()
+
+	
 	tooltip.hide_tooltip()
 	
 	GlobalData.mouse_disable = true
@@ -201,3 +203,6 @@ func end_cutscene():
 	Levels.in_cutscene = false
 	$CurrencyPanel.visible = true
 	$Minimap.visible = true
+	
+func get_tooltip():
+	return tooltip

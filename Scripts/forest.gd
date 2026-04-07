@@ -28,7 +28,7 @@ func _ready() -> void:
 		MisionSystem.add_mission("Habla con Leonard")
 		_start_first_mission_dialogue()
 		$AreaToFight.monitoring = true
-		$Player.position = Vector2(1471,882)
+		#$Player.position = Vector2(1471,882)
 		$Leonard.position = Vector2(1576,904)
 	else:
 		# No es primera misión, iniciar directamente
@@ -96,15 +96,14 @@ func _on_area_to_fight_body_entered(body: Node2D) -> void:
 		get_tree().change_scene_to_file("res://Scenario/village_scenario.tscn")
 
 
-
-
 func _on_area_2d_body_entered(body: Node2D) -> void: #Barreras
 	if body.is_in_group("Player"):
 		DialogueManager.show_dialogue_balloon(barriers,"start")
 
 
-
 func _on_keys_tutrial_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		DialogueManager.show_dialogue_balloon(keys_tutorial,"start")
-		$Keys_tutrial.monitoring = false
+	if not GlobalData.first_mision:
+		if body.is_in_group("Player"):
+			DialogueManager.show_dialogue_balloon(keys_tutorial,"start")
+			$Keys_tutrial.monitoring = false
+			$Keys_tutrial/CollisionShape2D.disabled = true

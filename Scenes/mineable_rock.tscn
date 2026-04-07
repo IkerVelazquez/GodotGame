@@ -188,6 +188,7 @@ script = ExtResource("1_62wi4")
 drop_item = ExtResource("2_f0fhh")
 drop_amount = 3
 mining_time = 5.0
+respawn_time = 480.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_xqmrg")
@@ -197,6 +198,7 @@ position = Vector2(0.5, -2.5)
 shape = SubResource("RectangleShape2D_ywrop")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visibility_layer = 2
 offset_top = -21.0
 offset_right = 4.0
 offset_bottom = 19.0
@@ -205,6 +207,7 @@ theme_override_fonts/font = ExtResource("2_ywrop")
 theme_override_font_sizes/font_size = 40
 
 [node name="Label" type="Label" parent="."]
+visibility_layer = 2
 z_index = 5
 offset_left = 16.0
 offset_top = -10.0
@@ -223,6 +226,7 @@ shape = SubResource("RectangleShape2D_f0fhh")
 debug_color = Color(0.985947, 0, 0.328636, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visibility_layer = 2
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_5h0gf")
 frame = 11
@@ -243,6 +247,7 @@ position = Vector2(9, 3)
 texture = ExtResource("6_5h0gf")
 
 [node name="mini_stone" type="Sprite2D" parent="."]
+visibility_layer = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_5h0gf")
 
@@ -253,6 +258,7 @@ libraries = {
 speed_scale = 5.0
 
 [node name="mini_stone2" type="Sprite2D" parent="."]
+visibility_layer = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_5h0gf")
 

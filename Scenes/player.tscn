@@ -1,10 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://b03276krfj5pn"]
+[gd_scene load_steps=39 format=3 uid="uid://b03276krfj5pn"]
 
 [ext_resource type="Script" uid="uid://bamjy0tqnviqj" path="res://Scripts/player.gd" id="1_x3wgy"]
 [ext_resource type="Script" uid="uid://drlxbfme3j2i6" path="res://Scripts/inventory.gd" id="2_3smsa"]
 [ext_resource type="Texture2D" uid="uid://cqhcf8req8uny" path="res://Free Heroes/Map_player/James 1A[map].png" id="2_8erm5"]
 [ext_resource type="Script" uid="uid://bvmijxqeynacw" path="res://Scripts/currency_panel.gd" id="3_8erm5"]
-[ext_resource type="Resource" uid="uid://dkxm85xyooxyf" path="res://Resources/copper_coin.tres" id="4_8erm5"]
 [ext_resource type="Script" uid="uid://hdplejdih3t" path="res://Scripts/recipes.gd" id="4_f1ek2"]
 [ext_resource type="PackedScene" uid="uid://c5qdvsm0w88x" path="res://Scenes/slot.tscn" id="5_f1ek2"]
 [ext_resource type="PackedScene" uid="uid://ba5s2g17snd7o" path="res://Scenes/recipe.tscn" id="5_tx1dd"]
@@ -162,13 +161,15 @@ sprite_frames = SubResource("SpriteFrames_fs7ks")
 animation = &"idle"
 
 [node name="Inventory" type="GridContainer" parent="."]
+z_index = 5
 offset_left = 169.0
 offset_top = -215.0
 offset_right = 453.0
 offset_bottom = -27.0
 columns = 6
 script = ExtResource("2_3smsa")
-ITEM = ExtResource("4_8erm5")
+ITEM = ExtResource("11_ukyrk")
+ITEM2 = ExtResource("10_ukyrk")
 
 [node name="slot" parent="Inventory" instance=ExtResource("5_f1ek2")]
 layout_mode = 2
