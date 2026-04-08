@@ -8,6 +8,7 @@ script = ExtResource("2_2shlh")
 icon = ExtResource("1_xosha")
 name = "Mineral de Manalith"
 recipe = Array[ExtResource("2_2shlh")]([])
+id = "manalith_ore"
 type = "Material"
 tool_type = ""
 tool_level = 0

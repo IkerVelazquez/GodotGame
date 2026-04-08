@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfq6msu5r4xts"
-path="res://.godot/imported/39_Silver_Pickaxe.png-10215ef59929b577f100dc942bc2b7be.ctex"
+uid="uid://cax1etf2nlo7"
+path="res://.godot/imported/iron_pickaxe.png-015289bfacddec6dbb6b14477091a170.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tools/39_Silver_Pickaxe.png"
-dest_files=["res://.godot/imported/39_Silver_Pickaxe.png-10215ef59929b577f100dc942bc2b7be.ctex"]
+source_file="res://Tools/iron_pickaxe.png"
+dest_files=["res://.godot/imported/iron_pickaxe.png-015289bfacddec6dbb6b14477091a170.ctex"]
 
 [params]
 

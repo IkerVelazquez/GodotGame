@@ -7,8 +7,8 @@ var currency_panel = null
 var items: Array = []
  
 ##region Testing
-@export var ITEM : Item
-@export var ITEM2 : Item
+#@export var ITEM : Item
+#@export var ITEM2 : Item
 #@export var ITEM3 : Item
 func _ready():
 	var player = get_parent()  # Porque Inventory es hijo directo de Player
@@ -29,10 +29,10 @@ func _ready():
 	#for i in range(1000):
 		#add_item(ITEM)
 		#await get_tree().create_timer(0.1).timeout
-	await get_tree().create_timer(2).timeout
-	add_item(ITEM2)
-	await get_tree().create_timer(2).timeout
-	add_item(ITEM)
+	#await get_tree().create_timer(2).timeout
+	#add_item(ITEM2)
+	#await get_tree().create_timer(2).timeout
+	#add_item(ITEM)
 ##endregion
  
 # 1. Buscar si ya existe ese item (stack)
@@ -95,10 +95,6 @@ func get_item_count_total(item: Item) -> int:
 	var count = 0
 	for i in get_children():
 		if i is Slot and i.item != null:
-			print("Inventario slot:", i.item.name, "Cantidad:", i.amount)
-			print("Comparando:", i.item, "con", item)
-			print("Iguales?:", i.item == item)
-			print("Nombre:", i.item.name, item.name)
 			if i.item == item:  # <- Este es probable problema
 				count += i.amount
 
@@ -109,8 +105,6 @@ func get_item_count_total(item: Item) -> int:
 			var equipped = player.get_equipped_tool()
 			if equipped and equipped.name == item.name:
 				count += 1
-	
-	print("Total de", item.name, "en inventario + equipado:", count)
 	return count
 	
 func _get_currency_amount(coin: Item) -> int:
@@ -246,4 +240,41 @@ func set_slot_data(index: int, new_item: Item, new_amount: int):
 	slot.item = new_item
 	slot.amount = new_amount
 	
+	item_changed.emit()
+
+func save():
+	var data = []
+	
+	for slot in get_children():
+		if slot.item != null:
+			data.append({
+				"id": slot.item.id,
+				"amount": slot.amount
+			})
+		else:
+			data.append(null) # mantener posición del slot
+	
+	return data
+	
+func load(data):
+	var slots = get_children()
+	
+	for i in range(min(data.size(), slots.size())):
+		var slot = slots[i]
+		var slot_data = data[i]
+		
+		if slot_data == null:
+			slot.item = null
+			slot.amount = 0
+		else:
+			var item = ItemDatabase.get_item(slot_data["id"])
+			
+			if item == null:
+				print("❌ Item no encontrado:", slot_data["id"])
+				continue
+			
+			slot.item = item
+			slot.amount = slot_data["amount"]
+	
+	# 🔥 CLAVE
 	item_changed.emit()

@@ -8,6 +8,7 @@ script = ExtResource("2_exyew")
 icon = ExtResource("1_qgb1t")
 name = "Mineral de Oro"
 recipe = Array[ExtResource("2_exyew")]([])
+id = "gold_ore"
 type = "Material"
 tool_type = ""
 tool_level = 0

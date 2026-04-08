@@ -527,6 +527,7 @@ health = 50
 max_health = 50
 max_mp = 50.0
 portrait = ExtResource("2_7xjdc")
+base_attack_damage = 100
 balance_icon_sound = ExtResource("3_duaek")
 
 [node name="player_animations" type="AnimatedSprite2D" parent="."]

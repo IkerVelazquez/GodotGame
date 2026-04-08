@@ -48,6 +48,12 @@ func _ready():
 	
 	# ✅ Verificar estado inicial de misiones
 	actualizar_visibilidad_misiones()
+	
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
+	
+	SaveSystem.load_game()
 
 func _on_misiones_actualizadas(_nombre_mision = null):
 	"""Se llama cuando se añade o completa una misión"""

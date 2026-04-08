@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bqltaipnpqcu2"]
 
-[ext_resource type="Texture2D" uid="uid://bpp5oh1n7dj1a" path="res://items/item377.png" id="1_6av3l"]
+[ext_resource type="Texture2D" uid="uid://0nc5asefnn8m" path="res://items/item377.png" id="1_6av3l"]
 [ext_resource type="Script" uid="uid://nyuu436tn40f" path="res://Scripts/item.gd" id="2_v5pv7"]
 
 [resource]
@@ -8,7 +8,12 @@ script = ExtResource("2_v5pv7")
 icon = ExtResource("1_6av3l")
 name = "stone"
 recipe = Array[ExtResource("2_v5pv7")]([])
+id = "stone"
 type = "Material"
+tool_type = ""
+tool_level = 1
+value = 0
 description = "Material para crear
 "
+rarity = "Common"
 metadata/_custom_type_script = "uid://nyuu436tn40f"

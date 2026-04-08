@@ -38,7 +38,7 @@ func _ready() -> void:
 	GameEvents.player_died.connect(_on_player_died)
 	GameEvents.enemy_died.connect(_on_enemy_died)
 	
-	if GlobalData.first_mision:
+	if not GlobalData.first_mision:
 		DialogueManager.show_dialogue_balloon(first_duialogue, "start")
 		$ColorRect.position = Vector2(-1920, -1080)
 		$ColorRect/AnimationPlayer.play("fade_in")
@@ -234,7 +234,6 @@ func _on_enemy_died():
 func _on_all_enemies_defeated():
 	print("🏆 NIVEL COMPLETADO")
 	await get_tree().create_timer(2.0).timeout
-	GlobalData.leonard_first_talk = false
 	
 	$ColorRect.position = Vector2(-1920,-1080)
 	$ColorRect/AnimationPlayer.play("fade_out")

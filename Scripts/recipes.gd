@@ -5,7 +5,6 @@ func _ready():
 	
 	if inventory:
 		inventory.item_changed.connect(_on_inventory_item_changed)
-		print("✅ Conectado a inventory.item_changed")
 	else:
 		print("❌ No se encontró Inventory")
 		

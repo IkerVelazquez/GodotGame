@@ -5,6 +5,7 @@ class_name Item
 @export var icon: Texture2D
 @export var name: String
 @export var recipe: Array[Item]
+@export var id: String
 
 @export_enum("Material", "Weapon", "Tool", "Consumable", "Currency") 
 var type: String = "Material"

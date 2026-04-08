@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8xn5vgsc7kp8"
-path="res://.godot/imported/9_Wooden_Pickaxe.png-3d6b07f5315d1f93a02652ae9f9ba30f.ctex"
+uid="uid://dl4qmp8o555q3"
+path="res://.godot/imported/wooden_pickaxe.png-c921e76707fac000bce95c7bbf410aa5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tools/9_Wooden_Pickaxe.png"
-dest_files=["res://.godot/imported/9_Wooden_Pickaxe.png-3d6b07f5315d1f93a02652ae9f9ba30f.ctex"]
+source_file="res://Tools/wooden_pickaxe.png"
+dest_files=["res://.godot/imported/wooden_pickaxe.png-c921e76707fac000bce95c7bbf410aa5.ctex"]
 
 [params]
 

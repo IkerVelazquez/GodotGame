@@ -10,7 +10,12 @@ var tutorial_complete = load("res://Dialogues/return_tutorial.dialogue")
 var keys_tutorial = load("res://Dialogues/keys_tutorial.dialogue")
 var barriers = load("res://Dialogues/barreras.dialogue")
 
+
 func _ready() -> void:
+	
+	SaveSystem.level_ready.connect(on_save_loaded)
+	
+func setup_scene():
 	$CinematicLayer.visible = false
 	$CinematicLayerEnemy.visible = false
 	
@@ -23,22 +28,24 @@ func _ready() -> void:
 	add_child(play_first_door)
 	
 	# Verificar si es la primera misión y no se ha ejecutado antes
-	if GlobalData.first_mision and not dialogue_triggered:
-		dialogue_triggered = true
-		MisionSystem.add_mission("Habla con Leonard")
+	if GlobalData.first_mision and not GlobalData.first_dialogue_done:
+		MisionSystem.add_mission("Recolecta madera")
 		_start_first_mission_dialogue()
 		$AreaToFight.monitoring = true
-		#$Player.position = Vector2(1471,882)
+		$Player.position = Vector2(1471,882)
 		$Leonard.position = Vector2(1576,904)
 	else:
 		# No es primera misión, iniciar directamente
 		$ColorRect/AnimationPlayer.play("change_level")
-		Levels.in_cutscene = false
 		$AreaToFight.monitoring = false
 		$Player.position = Vector2(1827,1666)
 		$Leonard.position = Vector2(1868,1666)
-		DialogueManager.show_dialogue_balloon(tutorial_complete, "start")
-		
+		if not GlobalData.return_tutorial:
+			Levels.in_cutscene = true
+			DialogueManager.show_dialogue_balloon(tutorial_complete, "start")
+#			EL JUEGO SE VUELVE A GUARDAR EN EL DIALOGUEMANAGER PARA QUE NO SE VUELVA A REPRODUCIR EL DIALOGO
+		else:
+			Levels.in_cutscene = false
 		
 func _start_first_mission_dialogue():
 	play_first_door.stream = first_door_closed
@@ -62,6 +69,10 @@ func _on_house_out():
 
 func _on_area_to_fight_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
+		GlobalData.first_mision = false
+		GlobalData.leonard_first_talk = false
+		GlobalData.first_dialogue_done = true
+		SaveSystem.save_game()  #GUARDA EL JUEGO
 		# Cambio de música
 		AudioManager.crossfade_music("res://Music/funky_loop.mp3", 4.0, -4)
 		
@@ -91,7 +102,6 @@ func _on_area_to_fight_body_entered(body: Node2D) -> void:
 		AudioManager.play_sfx("res://Sounds/Whoosh.mp3")
 		await get_tree().create_timer(1.0).timeout
 		$ColorRect/AnimationPlayer.play("fade_in")
-		
 		await get_tree().create_timer(0.5).timeout
 		get_tree().change_scene_to_file("res://Scenario/village_scenario.tscn")
 
@@ -102,8 +112,18 @@ func _on_area_2d_body_entered(body: Node2D) -> void: #Barreras
 
 
 func _on_keys_tutrial_body_exited(body: Node2D) -> void:
-	if not GlobalData.first_mision:
-		if body.is_in_group("Player"):
+	if body.is_in_group("Player"):
+		if not GlobalData.first_mision and not GlobalData.block_mats_tutorial:
 			DialogueManager.show_dialogue_balloon(keys_tutorial,"start")
-			$Keys_tutrial.monitoring = false
-			$Keys_tutrial/CollisionShape2D.disabled = true
+			$Keys_tutrial.call_deferred("set", "monitoring", false)
+			$Keys_tutrial/CollisionShape2D.call_deferred("set", "disabled", true)
+			GlobalData.block_mats_tutorial = true
+			SaveSystem.save_game()
+		else:
+			$Keys_tutrial.call_deferred("set", "monitoring", false)
+			$Keys_tutrial/CollisionShape2D.call_deferred("set", "disabled", true)
+			
+
+func on_save_loaded():
+	print("ON SAVE LOADED LLAMADA")
+	setup_scene()

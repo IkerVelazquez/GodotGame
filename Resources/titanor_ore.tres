@@ -8,6 +8,7 @@ script = ExtResource("2_j5rog")
 icon = ExtResource("1_ng3it")
 name = "Mineral de Titanor"
 recipe = Array[ExtResource("2_j5rog")]([])
+id = "titanor_ore"
 type = "Material"
 tool_type = ""
 tool_level = 0

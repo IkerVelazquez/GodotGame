@@ -10,6 +10,7 @@ script = ExtResource("2_x8613")
 icon = ExtResource("1_6s7jx")
 name = "Lingote de Hierro"
 recipe = Array[ExtResource("2_x8613")]([ExtResource("3_r3mgi"), ExtResource("4_h1uys")])
+id = "iron_ingot"
 type = "Material"
 tool_type = ""
 tool_level = 0

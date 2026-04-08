@@ -8,6 +8,7 @@ script = ExtResource("2_3bqkb")
 icon = ExtResource("1_sfed7")
 name = "Mineral de Irisium"
 recipe = Array[ExtResource("2_3bqkb")]([])
+id = "irisium_ore"
 type = "Material"
 tool_type = ""
 tool_level = 0

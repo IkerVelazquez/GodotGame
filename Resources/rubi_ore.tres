@@ -8,6 +8,7 @@ script = ExtResource("2_mc0g7")
 icon = ExtResource("1_fdflk")
 name = "Mineral de Rubí"
 recipe = Array[ExtResource("2_mc0g7")]([])
+id = "rubi_ore"
 type = "Material"
 tool_type = ""
 tool_level = 0

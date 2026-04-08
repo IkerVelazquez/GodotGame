@@ -10,6 +10,7 @@ script = ExtResource("2_xwd6b")
 icon = ExtResource("1_ciyc8")
 name = "Lingotel de Irisium"
 recipe = Array[ExtResource("2_xwd6b")]([ExtResource("3_8sqpb"), ExtResource("3_8sqpb"), ExtResource("3_8sqpb"), ExtResource("3_8sqpb"), ExtResource("3_8sqpb"), ExtResource("4_ofg46")])
+id = "irisium_ingot"
 type = "Material"
 tool_type = ""
 tool_level = 0

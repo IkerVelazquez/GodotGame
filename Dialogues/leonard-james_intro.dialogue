@@ -13,7 +13,6 @@ if GlobalData.leonard_first_talk == true
 		Leonard: Lo fue alguna vez gracias a ti James, siempre estaremos en deuda contigo
 		set GlobalData.leonard_first_talk = false
 		set Levels.in_cutscene = false
-		do MisionSystem.complete_mission("Habla con Leonard")
 		=> END
 	
 	- Necesito irme.
@@ -23,7 +22,6 @@ if GlobalData.leonard_first_talk == true
 		set GlobalData.leonard_first_talk = false
 		set Levels.in_cutscene = false
 		set GlobalData.mouse_disable = true
-		do MisionSystem.complete_mission("Habla con Leonard")
 		=> END
 		
 	=> END

@@ -10,6 +10,7 @@ script = ExtResource("2_1206a")
 icon = ExtResource("1_jdrr4")
 name = "Lingote de Manalith"
 recipe = Array[ExtResource("2_1206a")]([ExtResource("3_f4qb0"), ExtResource("4_7y54o")])
+id = "manalith_ingot"
 type = "Material"
 tool_type = ""
 tool_level = 1

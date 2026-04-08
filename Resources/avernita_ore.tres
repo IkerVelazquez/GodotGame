@@ -8,6 +8,7 @@ script = ExtResource("2_cs66c")
 icon = ExtResource("1_04ta2")
 name = "Mineral de Avernita"
 recipe = Array[ExtResource("2_cs66c")]([])
+id = "avernita_ore"
 type = "Material"
 tool_type = ""
 tool_level = 0

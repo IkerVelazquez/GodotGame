@@ -160,7 +160,7 @@ script = ExtResource("1_x3wgy")
 sprite_frames = SubResource("SpriteFrames_fs7ks")
 animation = &"idle"
 
-[node name="Inventory" type="GridContainer" parent="."]
+[node name="Inventory" type="GridContainer" parent="." groups=["Inventory"]]
 z_index = 5
 offset_left = 169.0
 offset_top = -215.0
@@ -168,8 +168,6 @@ offset_right = 453.0
 offset_bottom = -27.0
 columns = 6
 script = ExtResource("2_3smsa")
-ITEM = ExtResource("11_ukyrk")
-ITEM2 = ExtResource("10_ukyrk")
 
 [node name="slot" parent="Inventory" instance=ExtResource("5_f1ek2")]
 layout_mode = 2
@@ -243,7 +241,7 @@ layout_mode = 2
 [node name="slot24" parent="Inventory" instance=ExtResource("5_f1ek2")]
 layout_mode = 2
 
-[node name="CurrencyPanel" type="VBoxContainer" parent="."]
+[node name="CurrencyPanel" type="VBoxContainer" parent="." groups=["Currency"]]
 z_index = 5
 offset_left = 389.0
 offset_top = -10.0
@@ -342,11 +340,12 @@ item = ExtResource("11_ukyrk")
 layout_mode = 2
 item = ExtResource("15_igrcy")
 
-[node name="EquipmentUI" type="HBoxContainer" parent="."]
+[node name="EquipmentUI" type="HBoxContainer" parent="." groups=["Equipment"]]
 offset_left = -435.0
 offset_top = -7.0
 offset_right = -395.0
 offset_bottom = 33.0
+scale = Vector2(0.8, 0.8)
 script = ExtResource("6_gymyn")
 
 [node name="ToolSlot" parent="EquipmentUI" instance=ExtResource("17_qqcod")]
@@ -375,10 +374,10 @@ label_settings = SubResource("LabelSettings_2ijsl")
 [node name="EquipmentLabel" type="Label" parent="."]
 z_index = 5
 offset_left = -455.0
-offset_top = -41.0
+offset_top = -29.0
 offset_right = -33.0
-offset_bottom = 12.0
-scale = Vector2(0.5, 0.5)
+offset_bottom = 24.0
+scale = Vector2(0.35, 0.35)
 text = "EQUIPAMIENTO"
 label_settings = SubResource("LabelSettings_p1odr")
 

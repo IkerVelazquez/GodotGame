@@ -10,6 +10,7 @@ script = ExtResource("2_r5ylc")
 icon = ExtResource("1_7p0jk")
 name = "Lingote de Cobre"
 recipe = Array[ExtResource("2_r5ylc")]([ExtResource("3_bynqc"), ExtResource("4_qwfav")])
+id = "copper_ingot"
 type = "Material"
 tool_type = ""
 tool_level = 0

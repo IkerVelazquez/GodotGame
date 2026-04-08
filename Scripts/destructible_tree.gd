@@ -158,11 +158,11 @@ func destroy_tree() -> void:
 	await get_tree().create_timer(explosion_time).timeout
 	leaf.visible = false
 	leaf2.visible = false
-	
-	start_respawn()
-	
 	if MisionSystem.is_mission_active("Recolecta madera"):
 		DialogueManager.show_dialogue_balloon(dialogue,"start")
+		MisionSystem.complete_mission("Recolecta madera")
+	start_respawn()
+	
 
 func start_respawn() -> void:
 	var random_time = randf_range(respawn_time_min, respawn_time_max)

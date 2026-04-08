@@ -25,78 +25,47 @@ func _ready():
 # ============================================
 
 func add_mission(nombre_mision: String, descripcion: String = "", objetivos: Dictionary = {}):
-	"""
-	Añade una nueva misión activa
-	Ejemplo de objetivos: {"recolectar_madera": 10, "hablar_con_leonard": 1}
-	"""
+	print("INTENTANDO AGREGAR:", nombre_mision)
+	
+	var key = nombre_mision.strip_edges().to_lower()
+	
 	# Verificar si ya está completada
-	if misiones_completadas.has(nombre_mision):
+	if misiones_completadas.has(key):
 		print("⚠️ La misión ya fue completada anteriormente: ", nombre_mision)
 		return false
 	
 	# Verificar si ya está activa
-	if misiones_activas.has(nombre_mision):
+	if misiones_activas.has(key):
 		print("⚠️ La misión ya está activa: ", nombre_mision)
 		return false
 	
-	# Agregar nueva misión
-	misiones_activas[nombre_mision] = {
+	# Crear misión
+	misiones_activas[key] = {
 		"nombre": nombre_mision,
 		"descripcion": descripcion,
 		"completada": false,
-		"objetivos": objetivos,  # Diccionario de objetivos y cantidades
+		"objetivos": objetivos,
 		"progreso": {},
 		"fecha_agregada": Time.get_unix_time_from_system(),
-		"recompensas": {}  # Para recompensas futuras
+		"recompensas": {}
 	}
 	
-	# Inicializar progreso de objetivos
+	# Inicializar progreso
 	for objetivo in objetivos.keys():
-		misiones_activas[nombre_mision]["progreso"][objetivo] = 0
+		misiones_activas[key]["progreso"][objetivo] = 0
 	
 	print("✅ Misión añadida: ", nombre_mision)
 	mision_agregada.emit(nombre_mision)
 	
-	# Guardar automáticamente
-	guardar_misiones()
 	return true
 
 func update_mission_progress(nombre_mision: String, objetivo: String, cantidad: int = 1):
-	"""
-	Actualiza el progreso de un objetivo específico
-	"""
-	if not misiones_activas.has(nombre_mision):
-		print("❌ Misión no encontrada: ", nombre_mision)
+	var key = nombre_mision.strip_edges().to_lower()
+	
+	if not misiones_activas.has(key):
 		return false
 	
-	var mision = misiones_activas[nombre_mision]
-	
-	if mision.completada:
-		print("⚠️ La misión ya está completada: ", nombre_mision)
-		return false
-	
-	if not mision.progreso.has(objetivo):
-		print("⚠️ Objetivo no encontrado en la misión: ", objetivo)
-		return false
-	
-	# Actualizar progreso
-	var nuevo_progreso = mision.progreso[objetivo] + cantidad
-	var objetivo_maximo = mision.objetivos[objetivo]
-	
-	mision.progreso[objetivo] = min(nuevo_progreso, objetivo_maximo)
-	
-	print("📊 Progreso actualizado - Misión: ", nombre_mision, " | ", objetivo, ": ", mision.progreso[objetivo], "/", objetivo_maximo)
-	
-	# Emitir señal de progreso
-	mision_progreso_actualizado.emit(nombre_mision, mision.progreso[objetivo], objetivo_maximo)
-	
-	# Verificar si la misión está completa
-	if _check_mission_completion(nombre_mision):
-		complete_mission(nombre_mision)
-	
-	# Guardar cambios
-	guardar_misiones()
-	return true
+	var mision = misiones_activas[key]
 
 func complete_mission(nombre_mision: String):
 	"""Marca una misión como completada"""
@@ -124,9 +93,7 @@ func complete_mission(nombre_mision: String):
 	mision_completada.emit(nombre_mision)
 	
 	# Eliminar de activas (opcional, puedes mantenerla para mostrar completadas)
-	# remove_mission(nombre_mision)  # Descomenta si quieres eliminarla de activas
-	
-	# Guardar cambios
+	remove_mission(nombre_mision)  # Descomenta si quieres eliminarla de activas
 	guardar_misiones()
 	return true
 

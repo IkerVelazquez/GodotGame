@@ -10,6 +10,7 @@ script = ExtResource("2_7pbxj")
 icon = ExtResource("1_xwqr4")
 name = "Lingote de Oro"
 recipe = Array[ExtResource("2_7pbxj")]([ExtResource("3_578ld"), ExtResource("3_578ld"), ExtResource("4_giefe")])
+id = "gold_ingot"
 type = "Material"
 tool_type = ""
 tool_level = 0

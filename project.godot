@@ -18,12 +18,14 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameEvents="*res://Scripts/GameEvents.gd"
-GlobalData="*res://Scripts/global_dialogue.gd"
+GlobalData="*res://Scripts/global_data.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Levels="*res://Scripts/levels.gd"
 AudioManager="*res://Scripts/AudioManager.gd"
 MisionSystem="*res://Scripts/mision_system.gd"
 Minimapglobal="*res://Scripts/minimapglobal.gd"
+SaveSystem="*res://Scripts/save_system.gd"
+ItemDatabase="*res://Scripts/item_database.gd"
 
 [dialogue_manager]
 
@@ -43,6 +45,10 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 UI=""
 Player=""
 npcs=""
+Inventory=""
+Currency=""
+Equipment=""
+Level=""
 
 [input]
 

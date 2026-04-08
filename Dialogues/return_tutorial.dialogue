@@ -6,4 +6,7 @@ Leonard: ¿Qué le has hecho a tus armas James?
 James: Dejé todo eso atrás...
 Leonard: Bueno,[wait=0.8] tal vez deberías de ir con el herrero, puedes vender algo de piedra y comprar algunas cosas
 James: Tiene razón señor Leonard, eso haré 
+do Levels.in_cutscene = false
+do GlobalData.return_tutorial = true
+do SaveSystem.save_game()
 => END

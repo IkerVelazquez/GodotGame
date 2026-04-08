@@ -9,6 +9,7 @@ script = ExtResource("2_48uow")
 icon = ExtResource("1_f6md1")
 name = "Moneda de Cobre"
 recipe = Array[ExtResource("2_48uow")]([ExtResource("3_1d8d3"), ExtResource("3_1d8d3"), ExtResource("3_1d8d3"), ExtResource("3_1d8d3"), ExtResource("3_1d8d3"), ExtResource("3_1d8d3"), ExtResource("3_1d8d3"), ExtResource("3_1d8d3"), ExtResource("3_1d8d3"), ExtResource("3_1d8d3")])
+id = "copper_coin"
 type = "Currency"
 tool_type = ""
 tool_level = 0

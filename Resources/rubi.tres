@@ -10,6 +10,7 @@ script = ExtResource("2_oeww3")
 icon = ExtResource("1_3xkee")
 name = "Rubí"
 recipe = Array[ExtResource("2_oeww3")]([ExtResource("3_ckef5"), ExtResource("3_ckef5"), ExtResource("4_bhspm")])
+id = "rubi"
 type = "Material"
 tool_type = ""
 tool_level = 0

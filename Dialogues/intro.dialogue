@@ -3,11 +3,6 @@
 do GlobalData.write_sound()
 James: Iré a recolectar algo de madera fuera de la aldea,[wait=0.8] enseguida vuelvo.
 
-# Verificar si la misión ya fue otorgada
-if not MisionSystem.is_mission_active("Habla con Leonard") and not MisionSystem.is_mission_completed("Habla con Leonard"):
-	do MisionSystem.add_mission("Habla con Leonard")
-
-do Levels.trigger_house_out()
 do Levels.in_cutscene = false
 
 
