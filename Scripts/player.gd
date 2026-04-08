@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var inventory_label = $InventoryLabel
 @onready var recipes_label = $RecipesLabel
 @onready var equipment_label = $EquipmentLabel
+@onready var equipment_ui_node = $EquipmentUI
 @onready var currency_panel = $CurrencyPanel
 @onready var minimap = $Minimap
 @onready var equipment_ui = null
@@ -162,10 +163,8 @@ func add_item(item):
 		inventory.add_item(item)
 
 func get_equipped_tool():
-	if equipment_ui:
-		var tool_slot = equipment_ui.get_node_or_null("ToolSlot")
-		if tool_slot:
-			return tool_slot.tool
+	if equipment_ui_node:
+		return equipment_ui_node.get_equipped_tool()
 	return null
 
 func has_tool_of_type(tool_type: String) -> bool:
@@ -178,16 +177,12 @@ func get_tool_level(tool_type: String) -> int:
 	return 0
 
 func equip_tool(tool: Item):
-	print("Player.equip_tool llamado con: ", tool.name)
-	if equipment_ui:
-		var tool_slot = equipment_ui.get_node_or_null("ToolSlot")
-		if tool_slot:
-			tool_slot.tool = tool
-			print("Herramienta equipada correctamente: ", tool.name)
-		else:
-			print("ERROR: No se encontró ToolSlot en equipment_ui")
+	if equipment_ui_node:
+		equipment_ui_node.equip_tool(tool)
+		print("🔧 Player equipó herramienta: ", tool.name)
 	else:
-		print("ERROR: equipment_ui es null")
+		print("❌ Player: No se encontró EquipmentUI")
+
 
 func unequip_tool():
 	if equipment_ui:

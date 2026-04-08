@@ -126,4 +126,9 @@ func _on_keys_tutrial_body_exited(body: Node2D) -> void:
 
 func on_save_loaded():
 	print("ON SAVE LOADED LLAMADA")
+	await get_tree().process_frame
+	var recetas = find_child("Recetas", true, false)
+	if recetas and recetas.has_method("refresh"):
+		recetas.refresh()
+		print("✅ Recetas refrescadas después de cargar")
 	setup_scene()

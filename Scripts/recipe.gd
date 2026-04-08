@@ -122,12 +122,8 @@ func _setup_result():
 
 # Recipe.gd - Parte de verificación de materiales
 func check():
-	for recipe in get_children():
-		if recipe and recipe.has_method("check"):
-			recipe.check()
-	
-	var inventory = get_tree().current_scene.find_child("Inventory")
-	
+	# Asegurar que inventory existe
+	var inventory = get_tree().current_scene.find_child("Inventory", true, false)
 	if not inventory:
 		if is_instance_valid(craft):
 			craft.disabled = true
@@ -151,17 +147,16 @@ func check():
 			can_craft = false
 			break
 	
-	# Verificar que no tengas una herramienta mejor
+	# 🔥 Verificar herramientas (MEJORADO)
 	if can_craft and item.type == "Tool":
-		if _has_better_tool():
+		if _has_better_or_equal_tool():  # Cambiar a esta función
 			can_craft = false
 			if is_instance_valid(craft):
-				craft.tooltip_text = "Ya tienes una herramienta mejor"
-	
-	# Verificar que no tengas la misma herramienta equipada
-	if can_craft and item.type == "Tool":
-		if _is_tool_already_equipped():
+				craft.tooltip_text = "Ya tienes una herramienta igual o mejor"
+		elif _is_tool_already_equipped():
 			can_craft = false
+			if is_instance_valid(craft):
+				craft.tooltip_text = "Ya tienes esta herramienta equipada"
 	
 	if is_instance_valid(craft):
 		craft.disabled = not can_craft
@@ -169,6 +164,28 @@ func check():
 	# Actualizar visual de slots
 	_update_slots_visual(items_needed, inventory)
 
+# 🔥 Nueva función que reemplaza a _has_better_tool
+func _has_better_or_equal_tool() -> bool:
+	# Solo aplica para herramientas
+	if item.type != "Tool":
+		return false
+	
+	var equipment = get_tree().current_scene.find_child("EquipmentUI", true, false)
+	if not equipment:
+		print("⚠️ No se encontró EquipmentUI en _has_better_or_equal_tool")
+		return false
+	
+	var current_tool = equipment.get_equipped_tool()
+	if not current_tool:
+		return false  # No hay herramienta equipada, se puede craftear
+	
+	# Comparar niveles: si la herramienta equipada tiene nivel mayor o IGUAL, no se puede craftear
+	if current_tool.tool_level >= item.tool_level:
+		print("🚫 No se puede craftear ", item.name, " (nivel ", item.tool_level, 
+			  ") porque ya tienes ", current_tool.name, " (nivel ", current_tool.tool_level, ")")
+		return true
+	
+	return false
 
 
 func _update_slots_visual(items_needed: Dictionary, inventory):
@@ -196,17 +213,21 @@ func _update_slots_visual(items_needed: Dictionary, inventory):
 				child.modulate = Color(0.5, 0.5, 0.5, 1)  # Gris
 
 func _is_tool_already_equipped() -> bool:
-	var player = get_tree().current_scene.find_child("Player", true, false)
-	if player and player.has_method("get_equipped_tool"):
-		var equipped = player.get_equipped_tool()
-		if equipped and item and equipped.name == item.name:
-			return true
+	var equipment = get_tree().current_scene.find_child("EquipmentUI", true, false)
+	if not equipment:
+		return false
+	
+	var equipped = equipment.get_equipped_tool()
+	if equipped and item and equipped.id == item.id:  # Comparar por ID en lugar de nombre
+		print("🚫 Ya tienes esta herramienta específica equipada: ", item.name)
+		return true
+	
 	return false
 
 func _check_if_already_equipped():
 	if not is_instance_valid(craft):
 		return
-		
+	
 	if item and item.type == "Tool" and _is_tool_already_equipped():
 		craft.disabled = true
 		craft.tooltip_text = "Ya tienes este " + item.name

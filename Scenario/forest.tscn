@@ -992,8 +992,17 @@ position = Vector2(1481, 969)
 [node name="Wood2" parent="." instance=ExtResource("13_7ua6f")]
 position = Vector2(1459, 960)
 
+[node name="Wood3" parent="." instance=ExtResource("13_7ua6f")]
+position = Vector2(1489, 945)
+
+[node name="Wood4" parent="." instance=ExtResource("13_7ua6f")]
+position = Vector2(1516, 946)
+
 [node name="Fiber" parent="." instance=ExtResource("14_v7esx")]
 position = Vector2(1506, 968)
+
+[node name="Fiber2" parent="." instance=ExtResource("14_v7esx")]
+position = Vector2(1522, 968)
 
 [node name="Stone" parent="." instance=ExtResource("13_onne8")]
 position = Vector2(1437, 928)
