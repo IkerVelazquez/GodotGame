@@ -387,10 +387,10 @@ zoom = Vector2(5, 5)
 [node name="Missions" parent="." instance=ExtResource("18_igrcy")]
 visibility_layer = 2
 z_index = 10
-offset_left = 286.0
-offset_top = 106.0
-offset_right = 286.0
-offset_bottom = 106.0
+offset_left = -432.0
+offset_top = 107.0
+offset_right = -432.0
+offset_bottom = 107.0
 scale = Vector2(0.6, 0.6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

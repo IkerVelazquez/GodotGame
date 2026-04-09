@@ -9,6 +9,7 @@ var first_dialogue_done: bool = false #Tutorial
 var house_out_done: bool = false #Tutorial
 var return_tutorial = false #Tutorial
 var block_mats_tutorial = false #Tutorial
+var first_tree = false #Tutorial
 
 func _physics_process(delta: float) -> void:
 	

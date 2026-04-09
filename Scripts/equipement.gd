@@ -34,6 +34,8 @@ func equip_tool(tool: Item):
 	if tool_slot:
 		tool_slot.tool = tool
 		emit_signal("tool_equipped", tool)
+		if MisionSystem.is_mission_active("construye un pico de madera"):
+			MisionSystem.complete_mission("construye un pico de madera")
 	else:
 		print("❌ ERROR: tool_slot es null en equip_tool")
 

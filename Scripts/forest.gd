@@ -5,6 +5,7 @@ var play_first_door: AudioStreamPlayer
 var dialogue_triggered := false  # Control para evitar múltiples ejecuciones
 var mission_given := false  # Control para evitar misiones duplicadas
 
+var tree_dialogue = preload("res://Dialogues/first_tree.dialogue")
 var resource = load("res://Dialogues/intro.dialogue")
 var tutorial_complete = load("res://Dialogues/return_tutorial.dialogue")
 var keys_tutorial = load("res://Dialogues/keys_tutorial.dialogue")
@@ -151,3 +152,30 @@ func _input(event):
 		for m in MisionSystem.get_active_missions():
 			print("  - ", m.nombre)
 		print("===================\n")
+
+func _on_mision_completada(nombre_mision: String):
+	
+	var objetivo_piedra = {
+			"piedra": 10
+			}
+			
+	match nombre_mision:
+		"recolecta madera":
+			print("🎉 Misión de madera completada")
+			DialogueManager.show_dialogue_balloon(tree_dialogue,"start")
+			MisionSystem.add_mission("Crea un pico", "")
+			
+			
+		"crea un pico":
+			print("🎉 Misión de pico completada")
+			MisionSystem.add_mission("Recolecta piedra", "", objetivo_piedra )
+			
+			
+		
+		#"derrota enemigos":
+			#print("🎉 Misión de combate completada - Spawneando jefe")
+			#spawnear_jefe()
+		#
+		#"habla con aldeano":
+			#print("🎉 Misión de diálogo completada - Activando tutorial")
+			#activar_tutorial()

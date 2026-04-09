@@ -77,10 +77,9 @@ func add_mission(nombre_mision: String, descripcion: String = "", objetivos: Dic
 # MisionSystem.gd - Completar update_mission_progress
 # MisionSystem.gd
 # MisionSystem.gd
+# MisionSystem.gd - Asegurar que esta parte esté completa
 func update_mission_progress(nombre_mision: String, objetivo: String, cantidad: int = 1):
 	var key = nombre_mision.strip_edges().to_lower()
-	
-	print("📊 Actualizando progreso - Misión: ", nombre_mision, " Objetivo: ", objetivo, " Cantidad: ", cantidad)
 	
 	if not misiones_activas.has(key):
 		print("❌ Misión no encontrada: ", nombre_mision)
@@ -88,22 +87,10 @@ func update_mission_progress(nombre_mision: String, objetivo: String, cantidad: 
 	
 	var mision = misiones_activas[key]
 	
-	# Verificar si la misión ya está completada
-	if mision.completada:
-		print("⚠️ La misión ya está completada")
-		return false
-	
-	# Verificar si el objetivo existe
-	if not mision.objetivos.has(objetivo):
-		print("⚠️ Objetivo no encontrado en misión: ", objetivo)
-		print("📋 Objetivos disponibles: ", mision.objetivos.keys())
-		return false
-	
-	# Asegurar que el progreso existe
 	if not mision.progreso.has(objetivo):
-		mision.progreso[objetivo] = 0
+		print("⚠️ Objetivo no encontrado: ", objetivo)
+		return false
 	
-	# Actualizar progreso
 	var progreso_anterior = mision.progreso[objetivo]
 	var progreso_necesario = mision.objetivos[objetivo]
 	var nuevo_progreso = min(progreso_anterior + cantidad, progreso_necesario)
@@ -111,47 +98,50 @@ func update_mission_progress(nombre_mision: String, objetivo: String, cantidad: 
 	
 	print("📊 Progreso: ", nuevo_progreso, "/", progreso_necesario)
 	
-	# Emitir señal
+	# 🔥 EMITIR SEÑAL DE PROGRESO ACTUALIZADO
 	mision_progreso_actualizado.emit(nombre_mision, nuevo_progreso, progreso_necesario)
 	
-	# Verificar si la misión está completa
 	if _check_mission_completion(key):
 		complete_mission(key)
 	
-	# Guardar cambios
+	SaveSystem.save_game()	
 	guardar_misiones()
-	
 	return true
 
+# MisionSystem.gd - En complete_mission()
 func complete_mission(nombre_mision: String):
 	"""Marca una misión como completada"""
-	if not misiones_activas.has(nombre_mision):
+	var key = nombre_mision.strip_edges().to_lower()
+	
+	if not misiones_activas.has(key):
 		print("❌ Misión no encontrada: ", nombre_mision)
 		return false
 	
-	var mision = misiones_activas[nombre_mision]
+	var mision = misiones_activas[key]
 	
 	if mision.completada:
 		print("⚠️ La misión ya estaba completada: ", nombre_mision)
 		return false
 	
-	# Marcar como completada
 	mision.completada = true
 	mision.fecha_completada = Time.get_unix_time_from_system()
 	
-	# Mover a misiones completadas
-	misiones_completadas[nombre_mision] = mision.duplicate(true)
+	# 🔥 Mover a completadas
+	misiones_completadas[key] = mision.duplicate(true)
 	
-	# Opcional: Dar recompensas aquí
-	_entregar_recompensas(nombre_mision)
+	# 🔥 Eliminar de activas (IMPORTANTE)
+	misiones_activas.erase(key)
 	
-	print("🎉 Misión completada: ", nombre_mision)
-	mision_completada.emit(nombre_mision)
+	_entregar_recompensas(key)
 	
-	# Eliminar de activas (opcional, puedes mantenerla para mostrar completadas)
-	SaveSystem.save_game()
+	print("🎉 Misión completada: ", mision.nombre)
+	mision_completada.emit(mision.nombre)
+	
 	guardar_misiones()
+	SaveSystem.save_game()  # Guardar inmediatamente
+	
 	return true
+
 
 func remove_mission(nombre_mision: String):
 	"""Elimina una misión activa (útil para misiones fallidas o canceladas)"""
@@ -227,18 +217,29 @@ func get_mission_progress(nombre_mision: String) -> float:
 	if objetivos_totales == 0:
 		return 1.0 if mision.completada else 0.0
 	
+	
 	return progreso_total / objetivos_totales
 
 # ============================================
 # FUNCIONES DE OBTENCIÓN DE DATOS
 # ============================================
 
+# MisionSystem.gd
+# MisionSystem.gd
 func get_active_missions() -> Array:
-	"""Devuelve un array con todas las misiones activas (no completadas)"""
+	"""Devuelve un array con todas las misiones activas (NO completadas)"""
+	print("🔍 get_active_missions() llamado")
+	print("  misiones_activas keys: ", misiones_activas.keys())
+	
 	var activas = []
 	for key in misiones_activas:
-		if not misiones_activas[key].completada:
-			activas.append(misiones_activas[key])
+		var mision = misiones_activas[key]
+		print("  Revisando misión: ", key, " - completada: ", mision.get("completada", false))
+		if not mision.get("completada", false):
+			activas.append(mision)
+			print("    → Agregada a activas")
+	
+	print("  Total activas: ", activas.size())
 	return activas
 
 func get_completed_missions() -> Array:
@@ -259,12 +260,15 @@ func get_all_missions() -> Dictionary:
 	print("🔍 get_all_missions() llamado - Retornando: ", misiones_activas)
 	return misiones_activas
 
+# MisionSystem.gd
 func get_mission_data(nombre_mision: String) -> Dictionary:
 	"""Obtiene los datos de una misión específica"""
-	if misiones_activas.has(nombre_mision):
-		return misiones_activas[nombre_mision]
-	elif misiones_completadas.has(nombre_mision):
-		return misiones_completadas[nombre_mision]
+	var key = nombre_mision.strip_edges().to_lower()  # 🔥 Normalizar a minúsculas
+	
+	if misiones_activas.has(key):
+		return misiones_activas[key]
+	elif misiones_completadas.has(key):
+		return misiones_completadas[key]
 	return {}
 
 # ============================================
@@ -292,17 +296,36 @@ func cargar_misiones():
 	"""Carga las misiones desde el archivo"""
 	if not FileAccess.file_exists(SAVE_PATH):
 		print("📁 No hay archivo de misiones guardado - Iniciando SIN misiones")
-		print("🔍 Verificando si hay misiones por defecto...")
-		
-		# 🔥 IMPORTANTE: Limpiar cualquier misión que pudiera existir
 		misiones_activas.clear()
 		misiones_completadas.clear()
-		
-		# Debug: Verificar que no haya misiones
-		print("📊 Estado después de limpiar - Misiones activas: ", misiones_activas.size())
 		return
 	
-	# ... resto del código existente ...
+	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if file:
+		var content = file.get_as_text()
+		var save_data = JSON.parse_string(content)
+		
+		if save_data:
+			# 🔥 Cargar misiones activas
+			misiones_activas.clear()
+			for key in save_data.get("misiones_activas", {}):
+				misiones_activas[key] = save_data["misiones_activas"][key]
+			
+			# 🔥 Cargar misiones completadas
+			misiones_completadas.clear()
+			for key in save_data.get("misiones_completadas", {}):
+				misiones_completadas[key] = save_data["misiones_completadas"][key]
+			
+			print("📀 Misiones cargadas correctamente")
+			print("   - Activas: ", misiones_activas.size())
+			print("   - Completadas: ", misiones_completadas.size())
+			
+			# Mostrar progreso de cada misión activa
+			for key in misiones_activas:
+				var mision = misiones_activas[key]
+				print("     * ", mision.nombre, " - Progreso: ", mision.progreso)
+		else:
+			print("❌ Error al parsear archivo de misiones")
 
 func _serializar_misiones(misiones: Dictionary) -> Dictionary:
 	"""Serializa misiones para guardarlas (convierte diccionarios internos)"""
@@ -359,6 +382,7 @@ func get_completed_missions_data() -> Dictionary:
 	"""Devuelve las misiones completadas para guardar"""
 	return misiones_completadas
 
+# En MisionSystem.gd, al cargar misiones
 func load_missions_from_data(misiones_data: Dictionary, completadas_data: Dictionary):
 	"""Carga misiones desde datos externos (SaveSystem)"""
 	print("📀 Cargando misiones desde SaveSystem")
@@ -367,9 +391,17 @@ func load_missions_from_data(misiones_data: Dictionary, completadas_data: Dictio
 	misiones_activas.clear()
 	misiones_completadas.clear()
 	
-	# Cargar nuevas misiones
-	misiones_activas = _deserializar_misiones(misiones_data)
-	misiones_completadas = _deserializar_misiones(completadas_data)
+	# 🔥 Solo cargar misiones NO completadas en activas
+	for key in misiones_data:
+		var mision = misiones_data[key]
+		if not mision.get("completada", false):
+			misiones_activas[key] = mision
+		else:
+			misiones_completadas[key] = mision
+	
+	# Cargar completadas
+	for key in completadas_data:
+		misiones_completadas[key] = completadas_data[key]
 	
 	print("✅ Misiones cargadas:")
 	print("   - Activas: ", misiones_activas.size())
@@ -378,6 +410,7 @@ func load_missions_from_data(misiones_data: Dictionary, completadas_data: Dictio
 	# Emitir señales para actualizar UI
 	for mision_key in misiones_activas:
 		mision_agregada.emit(misiones_activas[mision_key].nombre)
+	
 
 # Modificar guardar_misiones() para que sea opcional
 func guardar_misiones_auto():

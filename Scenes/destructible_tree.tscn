@@ -190,7 +190,6 @@ respawn_time_max = 350.0
 chop_time = 2.8
 
 [node name="tree_sprite" type="Sprite2D" parent="."]
-visibility_layer = 2
 texture = ExtResource("2_h4ski")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -220,6 +219,7 @@ libraries = {
 speed_scale = 2.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visibility_layer = 2
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_hjgbd")
 frame = 11

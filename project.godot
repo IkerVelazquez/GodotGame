@@ -26,6 +26,7 @@ MisionSystem="*res://Scripts/mision_system.gd"
 Minimapglobal="*res://Scripts/minimapglobal.gd"
 SaveSystem="*res://Scripts/save_system.gd"
 ItemDatabase="*res://Scripts/item_database.gd"
+MissionManager="*res://Scripts/mission_manager.gd"
 
 [dialogue_manager]
 

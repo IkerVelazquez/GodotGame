@@ -109,6 +109,8 @@ func complete_mining():
 	$mini_stone.visible = false
 	$mini_stone2.visible = false
 	# Iniciar regeneración
+	if MisionSystem.is_mission_active("recolecta piedra"):
+		_on_piedra_picada(drop_amount)
 	start_respawn()
 
 func start_respawn():
@@ -163,3 +165,9 @@ func _input(event):
 	if event.is_action_released("interact"):
 		if is_mining:
 			cancel_mining()
+
+func _on_piedra_picada(cantidad: int):
+	if MisionSystem.is_mission_active("recolecta piedra"):
+		MisionSystem.update_mission_progress("recolecta piedra", "piedra", cantidad)
+		print("PROGRESION EN PICAR PIEDRA")
+	
