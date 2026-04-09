@@ -65,24 +65,27 @@ func actualizar_visibilidad_misiones():
 	var misiones_activas = MisionSystem.get_active_missions()
 	var tiene_misiones = misiones_activas.size() > 0
 	
-	if tiene_misiones:
+	# 🔥 Si no hay misiones, no ocultar inmediatamente si estamos en medio de una animación
+	if not tiene_misiones:
+		# Esperar un poco antes de ocultar (dar tiempo a la animación)
+		await get_tree().create_timer(1.5).timeout
+		# Verificar nuevamente después de la espera
+		if MisionSystem.get_active_missions().size() == 0:
+			$Missions.hide()
+			print("📋 Ocultando panel de misiones - No hay misiones activas")
+	else:
 		$Missions.show()
 		print("📋 Mostrando panel de misiones - Misiones activas: ", misiones_activas.size())
-		# Opcional: imprimir nombres de misiones activas
-		for mision in misiones_activas:
-			print("  - ", mision.nombre)
-	else:
-		$Missions.hide()
-		print("📋 Ocultando panel de misiones - No hay misiones activas")
+
 
 func _physics_process(delta):
 	
 	var misiones_activas = MisionSystem.get_active_missions()
 	
-	if misiones_activas.size() > 0:
-		$Missions.show()
-	else:
-		$Missions.hide()
+	#if misiones_activas.size() > 0:
+		#$Missions.show()
+	#else:
+		#$Missions.hide()
 		
 	if Levels.in_cutscene:
 		velocity = Vector2.ZERO

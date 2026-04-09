@@ -158,9 +158,7 @@ func destroy_tree() -> void:
 	await get_tree().create_timer(explosion_time).timeout
 	leaf.visible = false
 	leaf2.visible = false
-	if MisionSystem.is_mission_active("Recolecta madera"):
-		DialogueManager.show_dialogue_balloon(dialogue,"start")
-		MisionSystem.complete_mission("Recolecta madera")
+	_on_madera_recolectada(1)
 	start_respawn()
 	
 
@@ -182,3 +180,18 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		interaction_label.visible = false
 		if is_choping:
 			cancel_chop()
+
+# En tu script de recolección de madera (ej: árbol, player, etc.)
+func _on_madera_recolectada(cantidad: int):
+	print("🪵 Madera recolectada: ", cantidad)
+	
+	# Actualizar progreso de la misión "Recolecta madera"
+	if MisionSystem.is_mission_active("recolecta madera"):
+		MisionSystem.update_mission_progress("recolecta madera", "madera", cantidad)
+		
+		
+		# Verificar si la misión se completó después de actualizar
+		# No es necesario verificar otra vez porque update_mission_progress ya llama a complete_mission si es necesario
+		# Pero si quieres hacer algo específico al completar, conecta la señal mision_completada
+	else:
+		print("⚠️ Misión 'Recolecta madera' no está activa")

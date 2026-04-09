@@ -13,6 +13,9 @@ var barriers = load("res://Dialogues/barreras.dialogue")
 
 func _ready() -> void:
 	
+	print("=== INICIANDO ESCENA FOREST ===")
+	print("🔍 Verificando misiones antes de cualquier operación:")
+	MisionSystem.debug_print_misiones()  # Agrega este método
 	SaveSystem.level_ready.connect(on_save_loaded)
 	
 func setup_scene():
@@ -29,7 +32,6 @@ func setup_scene():
 	
 	# Verificar si es la primera misión y no se ha ejecutado antes
 	if GlobalData.first_mision and not GlobalData.first_dialogue_done:
-		MisionSystem.add_mission("Recolecta madera")
 		_start_first_mission_dialogue()
 		$AreaToFight.monitoring = true
 		$Player.position = Vector2(1471,882)
@@ -43,6 +45,11 @@ func setup_scene():
 		if not GlobalData.return_tutorial:
 			Levels.in_cutscene = true
 			DialogueManager.show_dialogue_balloon(tutorial_complete, "start")
+			var objetivos = {
+				"madera": 2
+			}
+			MisionSystem.add_mission("Recolecta madera", "", objetivos)
+			MisionSystem.debug_print_misiones()  # Usa el método que creamos
 #			EL JUEGO SE VUELVE A GUARDAR EN EL DIALOGUEMANAGER PARA QUE NO SE VUELVA A REPRODUCIR EL DIALOGO
 		else:
 			Levels.in_cutscene = false
@@ -72,6 +79,8 @@ func _on_area_to_fight_body_entered(body: Node2D) -> void:
 		GlobalData.first_mision = false
 		GlobalData.leonard_first_talk = false
 		GlobalData.first_dialogue_done = true
+		print("=== ANTES DE GUARDAR PREVIO A LA ESCENA DE PELEA===")
+		MisionSystem.debug_print_internal_state()
 		SaveSystem.save_game()  #GUARDA EL JUEGO
 		# Cambio de música
 		AudioManager.crossfade_music("res://Music/funky_loop.mp3", 4.0, -4)
@@ -118,6 +127,8 @@ func _on_keys_tutrial_body_exited(body: Node2D) -> void:
 			$Keys_tutrial.call_deferred("set", "monitoring", false)
 			$Keys_tutrial/CollisionShape2D.call_deferred("set", "disabled", true)
 			GlobalData.block_mats_tutorial = true
+			print("=== ANTES DE GUARDAR REGRESANDO DE LA ESCENA DE ATAQUE ===")
+			MisionSystem.debug_print_internal_state()
 			SaveSystem.save_game()
 		else:
 			$Keys_tutrial.call_deferred("set", "monitoring", false)
@@ -132,3 +143,11 @@ func on_save_loaded():
 		recetas.refresh()
 		print("✅ Recetas refrescadas después de cargar")
 	setup_scene()
+
+func _input(event):
+	if event.is_action_pressed("ui_f12"):  # F12 para debug
+		print("\n=== DEBUG MISIONES ===")
+		print("Misiones activas:", MisionSystem.get_active_missions().size())
+		for m in MisionSystem.get_active_missions():
+			print("  - ", m.nombre)
+		print("===================\n")

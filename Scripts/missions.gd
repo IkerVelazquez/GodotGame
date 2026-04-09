@@ -121,24 +121,51 @@ func _on_mision_agregada(nombre_mision):
 
 func _on_mision_completada(nombre_mision):
 	"""Callback cuando se completa una misión"""
-	var nombre_label = "Mision_" + nombre_mision.replace(" ", "_").replace(".", "")
+	print("🎉 Misión completada en UI: ", nombre_mision)
+	
+	# Debug: Mostrar todos los labels existentes
+	print("📋 Labels existentes en el contenedor:")
 	for child in misiones_container.get_children():
-		if child is Label and child.name == nombre_label:
-			# Cambiar estilo visual
-			child.queue_free()
-			break
+		if child is Label:
+			print("  - Nombre: ", child.name)
+			print("    Texto: ", child.text)
+	
+	var nombre_label = "Mision_" + nombre_mision.replace(" ", "_").replace(".", "")
+	print("🔍 Buscando label con nombre: ", nombre_label)
+	
+	for child in misiones_container.get_children():
+		if child is Label:
+			if child.name == nombre_label:
+				print("✅ Label encontrado por nombre exacto")
+				child.modulate = Color(0.0, 1.0, 0.0)
+				await get_tree().create_timer(1.0).timeout
+				child.queue_free()
+				break
+			elif child.name.to_lower() == nombre_label.to_lower():
+				print("✅ Label encontrado por nombre case-insensitive")
+				child.modulate = Color(0.0, 1.0, 0.0)
+				await get_tree().create_timer(1.0).timeout
+				child.queue_free()
+				break
 			
 	
 		
 
 func limpiar_misiones_completadas():
-	"""Elimina todas las misiones completadas"""
+	"""Elimina todas las misiones completadas con animación"""
 	var misiones = MisionSystem.get_all_missions()
+	
 	for key in misiones.keys():
 		if misiones[key].completada:
 			var nombre_label = "Mision_" + key.replace(" ", "_").replace(".", "")
+			
 			for child in misiones_container.get_children():
 				if child is Label and child.name == nombre_label:
+					# Animación de salida
+					var tween = create_tween()
+					tween.tween_property(child, "modulate:a", 0.0, 0.3)
+					await tween.finished
 					child.queue_free()
 					break
+			
 			MisionSystem.remove_mission(key)

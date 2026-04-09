@@ -1,39 +1,60 @@
-# SaveSystem.gd
+# SaveSystem.gd (modificado)
 extends Node
 
 const SAVE_PATH = "user://savegame.json"
 signal level_ready
 
-	
-# En SaveSystem.gd
+# SaveSystem.gd
 func save_game():
+	print("💾 INICIANDO GUARDADO...")
+	
 	var inventory = get_inventory()
 	var currency = get_currency()
 	var equipment = get_equipment()
 	
-	# 🔥 Debug: Verificar qué se está guardando
-	print("🔍 Datos a guardar:")
-	print("  - Equipment: ", equipment.save() if equipment else "null")
-	print("  - Inventory: ", inventory.save() if inventory else "null")
-	print("  - Currency: ", currency.save() if currency else "null")
+	# 🔥 Obtener datos FRESCOS de MisionSystem
+	print("🔍 Obteniendo datos de MisionSystem...")
+	var misiones_data = MisionSystem.get_all_missions()
+	var misiones_completadas_data = MisionSystem.get_completed_missions_data()
+	
+	# 🔥 DEBUG DETALLADO
+	print("📊 Misiones en MisionSystem (activas):")
+	for key in misiones_data:
+		var mision = misiones_data[key]
+		print("  - ", key)
+		print("    Nombre: ", mision.get("nombre", "sin nombre"))
+		print("    Objetivos: ", mision.get("objetivos", {}))
+		print("    Progreso: ", mision.get("progreso", {}))
+		print("    Completada: ", mision.get("completada", false))
+	
+	print("📊 Misiones completadas: ", misiones_completadas_data.size())
+	
+	# También verificar directamente desde las variables internas de MisionSystem
+	print("🔍 Verificando variables internas de MisionSystem:")
+	print("  misiones_activas: ", MisionSystem.misiones_activas)
 	
 	var data = {
 		"global": GlobalData.save(),
-		"misiones": MisionSystem.misiones_activas,
-		"misiones_completadas": MisionSystem.misiones_completadas,
+		"misiones": misiones_data,
+		"misiones_completadas": misiones_completadas_data,
 		"inventory": inventory.save() if inventory else [],
 		"currency": currency.save() if currency else {},
 		"equipment": equipment.save() if equipment else {}
 	}
 	
-	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	file.store_string(JSON.stringify(data))
-	print("💾 Juego guardado completo")
-
-func load_game():
+	# 🔥 Verificar qué se va a guardar
+	print("📦 Datos que se guardarán:")
+	print("  misiones en data: ", data["misiones"])
 	
-		
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var json_string = JSON.stringify(data)
+	file.store_string(json_string)
+	print("💾 Juego guardado completo")
+	print("🔍 JSON guardado: ", json_string)
+	
+func load_game():
 	if not FileAccess.file_exists(SAVE_PATH):
+		print("📁 No hay archivo de guardado - Iniciando nuevo juego")
 		emit_signal("level_ready")
 		return
 	
@@ -41,7 +62,6 @@ func load_game():
 	var data = JSON.parse_string(file.get_as_text())
 	
 	if data:
-		# 🔥 ESPERAR A QUE TODO EXISTA
 		await get_tree().process_frame
 		await get_tree().process_frame
 		
@@ -49,22 +69,24 @@ func load_game():
 		var currency = get_currency()
 		var equipment = get_equipment()
 		
-		print("Inventory:", inventory)
-		
-		if inventory == null:
-			print("❌ Inventory no encontrado")
-			return
-		
+		# Cargar datos globales
 		GlobalData.load(data.get("global", {}))
-		MisionSystem.misiones_activas = data.get("misiones", {})
-		MisionSystem.misiones_completadas = data.get("misiones_completadas", {})
 		
-		inventory.load(data.get("inventory", []))
-		currency.load(data.get("currency", {}))
-		equipment.load(data.get("equipment", {}))
+		# 🔥 Cargar misiones desde el save principal
+		print("📀 Cargando misiones desde savegame.json")
+		MisionSystem.load_missions_from_data(
+			data.get("misiones", {}), 
+			data.get("misiones_completadas", {})
+		)
+		
+		if inventory:
+			inventory.load(data.get("inventory", []))
+		if currency:
+			currency.load(data.get("currency", {}))
+		if equipment:
+			equipment.load(data.get("equipment", {}))
 		
 		emit_signal("level_ready")
-		print("Ya cargó el save:" , GlobalData.first_mision)
 		print("📀 Juego cargado completo")
 
 # Helpers
